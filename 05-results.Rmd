@@ -35,6 +35,10 @@ initial_rank <- initial_rank[,2:3]
 df1_count <- left_join(df1_count, initial_rank) %>%
   mutate(InitialRank = cut(as.numeric(InitialRank), breaks = seq(0,75,5), right = F))
 ```
+```{r, fig.height=15}
+ggpairs(df1_count %>% dplyr::select(year,TotalViews,TagCount,TotalComments, AcceptedAnswers,TotalAnswers), aes(color=year)) + 
+  theme_bw()
+```
 
 ```{r, fig.height=25}
 
