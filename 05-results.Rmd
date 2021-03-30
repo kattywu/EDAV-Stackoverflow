@@ -24,7 +24,7 @@ library(ggridges)
 ```{r}
 df1_count <- df1 %>%
   group_by(year, Tags) %>%
-  summarise(TotalViews = sum(ViewCount), TagCount = length(Tags), TotalComments = sum(CommentCount), AcceptedAnswers = sum(as.integer(AcceptAnswer)), TotalAnswers = sum(AnswerCount)) %>%
+  summarise(TotalViews = sum(ViewCount), TagCount = length(Tags), TotalComments = sum(CommentCount), AcceptedAnswers = sum(as.integer(as.character(AcceptAnswer))), TotalAnswers = sum(AnswerCount)) %>%
   mutate(TagRank = as.factor(order(TagCount,year,Tags, decreasing = T))) 
 ```
 ```{r}
@@ -35,12 +35,34 @@ initial_rank <- initial_rank[,2:3]
 df1_count <- left_join(df1_count, initial_rank) %>%
   mutate(InitialRank = cut(as.numeric(InitialRank), breaks = seq(0,75,5), right = F))
 ```
-```{r, fig.height=15}
+```{r, fig.height=8, fig.width=16}
 ggpairs(df1_count %>% dplyr::select(year,TotalViews,TagCount,TotalComments, AcceptedAnswers,TotalAnswers), aes(color=year)) + 
-  theme_bw()
+  theme_bw() +
+  theme_update(text = element_text(size=20))
 ```
-
-```{r, fig.height=25}
+```{r}
+grid.arrange(
+df1_count %>%
+  dplyr::select(year, TotalComments, AcceptedAnswers, TotalAnswers) %>% 
+  group_by(year) %>% 
+  summarise_all(sum) %>%
+  gather("Type","Value",-year) %>%
+  ggplot(aes(year, Value, fill = Type)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  scale_fill_manual("legend", values = c("TotalComments" = "#0072B2", "AcceptedAnswers" = "#D55E00", "TotalAnswers" = "#CC79A7")) +
+  theme_bw() +
+  ggtitle("Sum of Variables by Year"),
+df1_count %>%
+  dplyr::select(year, TotalViews) %>% 
+  group_by(year) %>% 
+  summarise_all(sum) %>%
+  gather("Type","Value",-year) %>%
+  ggplot(aes(year, Value, fill = Type)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  scale_fill_manual("legend", values = c("TotalViews" = "#E69F00")) +
+  theme_bw(),ncol=1)
+```
+```{r, fig.height=25, fig.width=30}
 
 getPalette = colorRampPalette(brewer.pal(9, "BuGn"))
 
@@ -54,9 +76,10 @@ ggplot(df1_count,
   geom_flow(stat = "alluvium", lode.guidance = "frontback",
             color = "darkgray") +
   geom_stratum() +
-  geom_text(stat = "alluvium", aes(label = after_stat(alluvium)), size=3) +
+  geom_text(stat = "alluvium", aes(label = after_stat(alluvium)), size=10) +
   theme(legend.position = "bottom") +
-  ggtitle("Frequency of Tags by Year")
+  ggtitle("Frequency of Tags by Year") +
+  theme_update(text = element_text(size=10))
 ```
 
 
