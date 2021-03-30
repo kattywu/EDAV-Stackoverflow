@@ -1,1 +1,51 @@
 # Data transformation
+
+```{r, include = FALSE}
+library(tidyverse)
+library(lubridate)
+```
+
+The initial step in cleaning the data was to combine the 7 data frames each containing 50,000 observations into one data frame containing 300,000 observations.
+
+```{r, message=FALSE, include=FALSE}
+df <- full_join(df_2015, df_2016) %>%
+  full_join(df_2017) %>%
+  full_join(df_2018) %>%
+  full_join(df_2019) %>%
+  full_join(df_2020) %>%
+  full_join(df_2021)
+```
+
+Now, there are three things that need to changed in our data before it can be used for this analysis;
+
+-   The Tags need to be separated so that we can compare the usage of each tag individually
+-   We need to create a new variable to indicate whether or not there was an accepted answer based off of whether or not we were supplied an AcceptedAnswerId which we will refer to as AcceptAnswer
+-   Convert AcceptAnswer, Tags and Id into factors, and convert CreationDate and LastActivityDate into dates
+
+```{r, include=FALSE}
+df <- df %>% 
+  separate_rows(Tags, sep = "<") %>%
+  separate_rows(Tags, sep = ">") %>%
+  na_if("") %>%
+  drop_na(Tags)
+
+df <- df %>%
+  mutate(AcceptAnswer = ifelse(is.na(AcceptedAnswerId), 0, 1))
+
+df <- df %>%
+  mutate(Id = as.factor(Id)) %>%
+  mutate(Tags = as.factor(Tags)) %>%
+  mutate(AcceptAnswer = as.factor(AcceptAnswer)) %>%
+  mutate(CreationDate = as.Date(CreationDate)) %>%
+  mutate(LastActivityDate = as.Date(LastActivityDate))
+
+```
+
+
+For our purposes we can omit title since we already have the post Id as a source of identification and we can omit AcceptedAnswerId because we only need the frequency of accepted answers which we have identified in AcceptAnswer.
+
+```{r, include=FALSE}
+df <- df %>%
+  dplyr::select(Id, CreationDate, LastActivityDate, Tags, AnswerCount, CommentCount, ViewCount, AcceptAnswer)
+
+```

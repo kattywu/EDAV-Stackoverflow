@@ -1,3 +1,36 @@
 # Interactive component
 
+```{r, fig.height=15}
+df1_count <- df1_count %>% dplyr::select(Tags,year, TotalViews, TagCount, TotalComments, AcceptedAnswers, TagRank) %>%
+  mutate(year = as.factor(year))
+if(interactive()) {
 
+
+  #   in these we supply a function for our color
+  parcoords(
+    df1_count
+    , color = list(
+       colorBy = "TagRank"
+       , colorScale = "scaleOrdinal"
+       , colorScheme = "schemeCategory10"
+    )
+    , withD3 = TRUE
+  )
+
+  if(require('ggplot2', quietly = TRUE)) {
+  parcoords(
+    df1_count
+    ,rownames = FALSE
+    ,brushMode = "1d-axes"
+    ,reorderable = TRUE
+    ,queue = TRUE
+    ,color= list(
+       colorBy="TagRank"
+       , colorScale = "scaleOrdinal"
+       , colorScheme = "schemeCategory10"
+    )
+    ,withD3 = TRUE
+  )
+  }
+}
+```

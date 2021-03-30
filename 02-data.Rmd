@@ -1,2 +1,56 @@
-# Data sources
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
 
+# Data sources
+The data chosen for this project was a sample of posts from stackoverflow.com which is an online platform where people post questions about code and receive answers from the general public. The StackOverflow database is massive containing over 100 GB of information so for our purposes we will be taking a small sample from each year we are interested in. 
+
+The data is split into 7 files, one for every year from 2015 to 2021.
+Each was queried from
+<https://data.stackexchange.com/stackoverflow/queries> using the query
+
+```{sql, eval = FALSE}
+select Id, AcceptedAnswerId, CreationDate, LastActivityDate, Tags,
+AnswerCount, CommentCount, ViewCount, Title 
+from Posts where year(CreationDate) = YEAR 
+and Tags IS NOT NULL
+```
+
+Where YEAR is replaced by the desired year.
+
+Each file contains the first 50,000 tagged posts on
+<https://stackoverflow.com/> for the given year and contains the
+following variables;
+
+-   Id: the unique Id given to each post
+
+-   AcceptedAnswerId: The unique Id associated with an accepted answer
+
+-   CreationDate: The date and time each post was created
+
+-   LastAcvtivityDate: The most recent date in which someone interacted
+    with the post as of 3/25/21
+
+-   Tags: A list of tags associated with the post sepearated by angle
+    brackets ("\<\>")
+
+-   AnswerCount: the number of answers each post has received
+
+-   CommentCount: the number of comments each post has received
+
+-   ViewCount: the number of views each post has received
+
+-   Title: Title of the post as specified by the author
+
+```{r, include=FALSE}
+df_2015 <- read.csv("./data/2015.csv")
+df_2016 <- read.csv("./data/2016.csv")
+df_2017 <- read.csv("./data/2017.csv")
+df_2018 <- read.csv("./data/2018.csv")
+df_2019 <- read.csv("./data/2019.csv")
+df_2020 <- read.csv("./data/2020.csv")
+df_2021 <- read.csv("./data/2021.csv")
+
+```

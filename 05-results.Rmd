@@ -1,1 +1,64 @@
 # Results
+```{r, message=FALSE, include=FALSE}
+library(tidyverse)
+library(remotes)
+library(GGally)
+library(parcoords)
+library(htmlwidgets)
+library(d3r)
+library(MASS)
+library(treemap)
+library(vcd)
+library(ggmosaic)
+library(lubridate)
+library(ggalluvial)
+library(gridExtra)
+library(RColorBrewer)
+library(ggridges)
+```
+
+## Top Tags over time
+
+
+
+```{r}
+df1_count <- df1 %>%
+  group_by(year, Tags) %>%
+  summarise(TotalViews = sum(ViewCount), TagCount = length(Tags), TotalComments = sum(CommentCount), AcceptedAnswers = sum(as.integer(AcceptAnswer)), TotalAnswers = sum(AnswerCount)) %>%
+  mutate(TagRank = as.factor(order(TagCount,year,Tags, decreasing = T))) 
+```
+```{r}
+initial_rank <- df1_count %>% filter(year==2015) %>% dplyr::select(Tags, TagRank)
+initial_rank <- initial_rank %>% rename(InitialRank = TagRank)
+initial_rank <- initial_rank[,2:3] 
+
+df1_count <- left_join(df1_count, initial_rank) %>%
+  mutate(InitialRank = cut(as.numeric(InitialRank), breaks = seq(0,75,5), right = F))
+```
+
+```{r, fig.height=25}
+
+getPalette = colorRampPalette(brewer.pal(9, "BuGn"))
+
+df1_count$Ranking<-cut(as.numeric(df1_count$TagRank), seq(0,75,5), right=FALSE)
+colourCount = length(unique(df1_count$Ranking))
+
+ggplot(df1_count,
+       aes(x = year, stratum = TagRank, alluvium = Tags,
+           fill = InitialRank, label = Tags)) +
+  scale_fill_manual(values = rev(getPalette(colourCount))) +
+  geom_flow(stat = "alluvium", lode.guidance = "frontback",
+            color = "darkgray") +
+  geom_stratum() +
+  geom_text(stat = "alluvium", aes(label = after_stat(alluvium)), size=3) +
+  theme(legend.position = "bottom") +
+  ggtitle("Frequency of Tags by Year")
+```
+
+
+
+
+
+```{r}
+
+```

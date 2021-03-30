@@ -1,1 +1,58 @@
 # Missing values
+Since our query did not include values without tags, the only missing values in our dataset are the missing values in AcceptedAnswerId as a result of the question not being answered. This problem is solved by the introduction of the indicator variable AcceptAnswer. Each post can only have one accepted answer so if we wish to determine if any other variables have an impact on the probability that a post will have an accepted answer we can use the proportion of posts that have answered posts to find our results.   
+
+That being said, not every tag we have listed in each year will appear in all the other years. Sampling random tags from our dataset proves unhelpful due to relatively low frequency of use of many of the tags within our sample.  
+
+```{r}
+df <- df %>% mutate(year = as.factor(year(CreationDate)))
+unique_tags <- df %>% 
+  group_by(year) %>%
+  summarize(n_tags = length(unique(Tags)))
+```
+```{r, fig.height=11, fig.width=6}
+set.seed(0)
+df_tab <- sort(table(df$Tags), decreasing = T)
+sample_100 <- sample(names(df_tab),100)
+
+newDF<- df[which((df$Tags %in% sample_100)==TRUE),]
+ggplot(newDF, aes(x=year, y=Tags, fill = ViewCount)) +
+  geom_tile() +
+  ggtitle("100 Random Tags")
+```
+
+Since we are not interested in all 29085 unique tags, it will suffice to analyze the top 50 most used unique tags for each year. This leaves us with 72 unique tags with which to analyze trends. 
+```{r}
+df_tab <- sort(table(df %>% filter(year==2015) %>% dplyr::select(Tags)), decreasing = T)
+top_50_15 <- names(df_tab[1:50])
+df_tab <- sort(table(df %>% filter(year==2016) %>% dplyr::select(Tags)), decreasing = T)
+top_50_16 <- names(df_tab[1:50])
+df_tab <- sort(table(df %>% filter(year==2017) %>% dplyr::select(Tags)), decreasing = T)
+top_50_17 <- names(df_tab[1:50])
+df_tab <- sort(table(df %>% filter(year==2018) %>% dplyr::select(Tags)), decreasing = T)
+top_50_18 <- names(df_tab[1:50])
+df_tab <- sort(table(df %>% filter(year==2019) %>% dplyr::select(Tags)), decreasing = T)
+top_50_19 <- names(df_tab[1:50])
+df_tab <- sort(table(df %>% filter(year==2020) %>% dplyr::select(Tags)), decreasing = T)
+top_50_20 <- names(df_tab[1:50])
+df_tab <- sort(table(df %>% filter(year==2021) %>% dplyr::select(Tags)), decreasing = T)
+top_50_21 <- names(df_tab[1:50])
+
+top_full <- unique(c(top_50_15, top_50_16, top_50_17, top_50_18, top_50_19, top_50_20, top_50_21))
+
+rm(top_50_15)
+rm(top_50_16)
+rm(top_50_17)
+rm(top_50_18)
+rm(top_50_19)
+rm(top_50_20)
+rm(top_50_21)
+
+df1 <- df[which((df$Tags %in% top_full)==TRUE),]
+```
+```{r, fig.height=9, fig.width=6}
+ggplot(df1, aes(x=year, y=Tags, fill = ViewCount)) +
+  geom_tile() +
+  ggtitle("50 Most Used Tags from Each Year ")
+```
+
+There is still have one tag (flutter), which isn't used in all 7 years, however there should be enough data on the usage of these tags to compare them between the years. 
