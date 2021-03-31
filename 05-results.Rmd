@@ -35,10 +35,22 @@ initial_rank <- initial_rank[,2:3]
 df1_count <- left_join(df1_count, initial_rank) %>%
   mutate(InitialRank = cut(as.numeric(InitialRank), breaks = seq(0,75,5), right = F))
 ```
-```{r, fig.height=8, fig.width=16}
-ggpairs(df1_count %>% dplyr::select(year,TotalViews,TagCount,TotalComments, AcceptedAnswers,TotalAnswers), aes(color=year)) + 
+```{r, fig.height=8, fig.width=20, message=FALSE, warning=FALSE}
+p <- ggpairs(df1_count %>% dplyr::select(year,TotalViews,TagCount,TotalComments, AcceptedAnswers,TotalAnswers), aes(color=year)) + 
   theme_bw() +
   theme_update(text = element_text(size=20))
+
+
+#scale colors
+for(i in 1:p$nrow) {
+  for(j in 1:p$ncol){
+    p[i,j] <- p[i,j] + 
+        scale_fill_manual(values=rev(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02", "#A6761D"))) +
+        scale_color_manual(values=rev(c("#1B9E77", "#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02", "#A6761D")))  
+  }
+}
+
+p
 ```
 ```{r}
 grid.arrange(
@@ -73,19 +85,21 @@ ggplot(df1_count,
        aes(x = year, stratum = TagRank, alluvium = Tags,
            fill = InitialRank, label = Tags)) +
   scale_fill_manual(values = rev(getPalette(colourCount))) +
+  scale_x_discrete(expand = c(0, 0)) +
+  scale_y_discrete(expand = c(0, 0)) +
   geom_flow(stat = "alluvium", lode.guidance = "frontback",
             color = "darkgray") +
-  geom_stratum() +
-  geom_text(stat = "alluvium", aes(label = after_stat(alluvium)), size=10) +
-  theme(legend.position = "bottom") +
-  ggtitle("Frequency of Tags by Year") +
-  theme_update(text = element_text(size=10))
+  geom_stratum(width = 3/7) +
+  geom_text(stat = "alluvium", aes(label = after_stat(alluvium)), size=8) +
+  theme(legend.position = "bottom", axis.text = element_text(size = 15, face = "bold")) +
+  ggtitle("Frequency of Tags by Year") 
 ```
 
 
 
 
 
-```{r}
-
+```{r,fig.height=10, fig.width=20}
+treemap(df1_count, index = c("year", "Tags"), vSize = "TagCount" )
+treemap(df1_count, index = c("year", "Tags"), vSize = "AcceptedAnswers" )
 ```
