@@ -38,7 +38,7 @@ df1_count <- left_join(df1_count, initial_rank) %>%
 ```{r, fig.height=8, fig.width=20, message=FALSE, warning=FALSE}
 p <- ggpairs(df1_count %>% dplyr::select(year,TotalViews,TagCount,TotalComments, AcceptedAnswers,TotalAnswers), aes(color=year)) + 
   theme_bw() +
-  theme_update(text = element_text(size=20))
+  theme_update(text = element_text(size=15))
 
 
 #scale colors

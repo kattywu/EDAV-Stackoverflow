@@ -8,12 +8,12 @@ library(lubridate)
 The initial step in cleaning the data was to combine the 7 data frames each containing 50,000 observations into one data frame containing 300,000 observations.
 
 ```{r, message=FALSE, include=FALSE}
-df <- full_join(df_2015, df_2016) %>%
-  full_join(df_2017) %>%
-  full_join(df_2018) %>%
-  full_join(df_2019) %>%
-  full_join(df_2020) %>%
-  full_join(df_2021)
+df <- full_join(df_2015, df_2016, by = c("Id", "AcceptedAnswerId", "CreationDate", "LastActivityDate", "Tags", "AnswerCount", "CommentCount", "ViewCount", "Title")) %>%
+  full_join(df_2017, by = c("Id", "AcceptedAnswerId", "CreationDate", "LastActivityDate", "Tags", "AnswerCount", "CommentCount", "ViewCount", "Title")) %>%
+  full_join(df_2018, by = c("Id", "AcceptedAnswerId", "CreationDate", "LastActivityDate", "Tags", "AnswerCount", "CommentCount", "ViewCount", "Title")) %>%
+  full_join(df_2019, by = c("Id", "AcceptedAnswerId", "CreationDate", "LastActivityDate", "Tags", "AnswerCount", "CommentCount", "ViewCount", "Title")) %>%
+  full_join(df_2020, by = c("Id", "AcceptedAnswerId", "CreationDate", "LastActivityDate", "Tags", "AnswerCount", "CommentCount", "ViewCount", "Title")) %>%
+  full_join(df_2021, by = c("Id", "AcceptedAnswerId", "CreationDate", "LastActivityDate", "Tags", "AnswerCount", "CommentCount", "ViewCount", "Title"))
 ```
 
 Now, there are three things that need to changed in our data before it can be used for this analysis;
