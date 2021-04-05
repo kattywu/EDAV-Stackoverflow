@@ -30,7 +30,7 @@ df1_count <- df1 %>%
 
 df1_count <- df1_count %>%
   group_by(year) %>%
-  mutate(TagRank = as.factor(rank(TagCount, ties.method = "first")))
+  mutate(TagRank = as.factor(rank(-TagCount, ties.method = "first")))
 ```
 
 ```{r, message=FALSE}
@@ -109,30 +109,25 @@ For tags that have more than 5,000 answers, the amount of views vary from lowest
 
 ```{r, fig.height=25, fig.width=30}
 
-getPalette = colorRampPalette(brewer.pal(9, "GnBu"))
 
-df1_count$Ranking<-cut(as.numeric(df1_count$TagRank), seq(0,75,5), right=FALSE)
-colourCount = length(unique(df1_count$Ranking))
 
+  
 ggplot(df1_count,
        aes(x = year, stratum = TagRank, alluvium = Tags,
            fill = InitialRank, label = Tags)) +
-  scale_fill_manual(values = c("#6D5BAE", "#5F6EB5", "#4F7EBA", "#3F8DBD", "#329BBE", "#2FA7BE", "#38B2BE", "#49BCBC", "#5DC6BB", "#72CEB9", "#87D5B8", "#9BDCB8", "#AEE1B9", "#BFE5BA", "#CEE8BB")) +
+  scale_fill_manual(values = rev(c("#6D5BAE", "#5F6EB5", "#4F7EBA", "#3F8DBD", "#329BBE", "#2FA7BE", "#38B2BE", "#49BCBC", "#5DC6BB", "#72CEB9", "#87D5B8", "#9BDCB8", "#AEE1B9", "#BFE5BA", "#CEE8BB")))+
   scale_x_discrete(expand = c(0, 0)) +
   scale_y_discrete(expand = c(0, 0)) +
   geom_flow(stat = "alluvium", lode.guidance = "frontback",
-            color = "darkgray") +
+            color = "darkgray", decreasing = TRUE) +
   geom_stratum(width = 3/7) +
   geom_text(stat = "alluvium", aes(label = after_stat(alluvium)), size=8) +
   theme(legend.position = "bottom", axis.text = element_text(size = 15, face = "bold")) +
   ggtitle("Frequency of Tags by Year") 
+
 ```
 
-If tags are ordered by the frequency of occurrences in our sample per year, there is a clear difference in the usage of each tag. Not a single tag stays at a consistent ranking throughout the 7 years. However there are a few interesting trends:
-- amazon-web-services is the tag that was ranked the most consistently, it maintains the same rank from 2017-2021.
-- ajax and xcode are the next most consistent tags, maintaining their respective ranks from 2018-2021.
-- Our sample from 2016 does not contain any occurrences of the tag flutter and as a result is one element smaller
-
+If tags are ordered by the frequency of occurrences in our sample per year, there is a clear difference in the usage of each tag. 
 
 
 ```{r,fig.height=10, fig.width=20}
