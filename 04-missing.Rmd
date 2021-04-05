@@ -11,16 +11,6 @@ unique_tags <- df %>%
   summarize(n_tags = length(unique(Tags)))
 ```
 
-```{r, fig.height=11, fig.width=6}
-set.seed(0)
-df_tab <- sort(table(df$Tags), decreasing = T)
-sample_100 <- sample(names(df_tab),100)
-
-newDF<- df[which((df$Tags %in% sample_100)==TRUE),]
-ggplot(newDF, aes(x=year, y=Tags, fill = ViewCount)) +
-  geom_tile() +
-  ggtitle("100 Random Tags")
-```
 
 Since we are not interested in all 29085 unique tags, it will suffice to analyze the top 50 most used unique tags for each year. This leaves us with 72 unique tags with which to analyze trends. 
 
@@ -53,10 +43,21 @@ rm(top_50_21)
 df1 <- df[which((df$Tags %in% top_full)==TRUE),]
 ```
 
-```{r, fig.height=9, fig.width=6}
+```{r, fig.height=9, fig.width=12}
+library(gridExtra)
+set.seed(0)
+df_tab <- sort(table(df$Tags), decreasing = T)
+sample_100 <- sample(names(df_tab),100)
+
+newDF<- df[which((df$Tags %in% sample_100)==TRUE),]
+grid.arrange(
+ggplot(newDF, aes(x=year, y=Tags, fill = ViewCount)) +
+  geom_tile() +
+  ggtitle("100 Random Tags"),
+
 ggplot(df1, aes(x=year, y=Tags, fill = ViewCount)) +
   geom_tile() +
-  ggtitle("50 Most Used Tags from Each Year ")
+  ggtitle("50 Most Used Tags from Each Year "), ncol=2)
 ```
 
 There is still have one tag (flutter), which isn't used in all 7 years, however there should be enough data on the usage of these tags to compare them between the years. 
