@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Interactive component | YOUR TITLE HERE</title>
-  <meta name="description" content="Chapter 6 Interactive component | YOUR TITLE HERE" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Chapter 6 Interactive component | Stack Overflow Tags Over Time</title>
+  <meta name="description" content="Chapter 6 Interactive component | Stack Overflow Tags Over Time" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Interactive component | YOUR TITLE HERE" />
+  <meta property="og:title" content="Chapter 6 Interactive component | Stack Overflow Tags Over Time" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Interactive component | YOUR TITLE HERE" />
+  <meta name="twitter:title" content="Chapter 6 Interactive component | Stack Overflow Tags Over Time" />
   
   
   
 
-<meta name="author" content="YOUR NAMES HERE" />
+<meta name="author" content="Emily Jennings-Dobbs and Yingyao Wu" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2021-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="results.html"/>
 <link rel="next" href="conclusion.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,8 +51,76 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/parallel-coordinates-2.1.8/parcoords.css" rel="stylesheet" />
+<script src="libs/parcoords-binding-1.0.0/parcoords.js"></script>
+<script src="libs/d3-5.16.0/d3.min.js"></script>
 
 
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -68,14 +135,16 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">Stack Overflow Tags</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#top-tags-over-time"><i class="fa fa-check"></i><b>5.1</b> Top Tags over time</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -89,7 +158,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR TITLE HERE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Stack Overflow Tags Over Time</a>
           </h1>
         </div>
 
@@ -97,8 +166,48 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="interactive-component" class="section level1" number="6">
+<div id="interactive-component" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Interactive component</h1>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="interactive-component.html#cb20-1"></a>df1_count &lt;-<span class="st"> </span>df1_count <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags,year, TotalViews, TagCount, TotalComments, AcceptedAnswers, TagRank) <span class="op">%&gt;%</span></span>
+<span id="cb20-2"><a href="interactive-component.html#cb20-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.factor</span>(year))</span>
+<span id="cb20-3"><a href="interactive-component.html#cb20-3"></a><span class="kw">parcoords</span>(df1_count, <span class="dt">rownames =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb20-4"><a href="interactive-component.html#cb20-4"></a>          <span class="dt">brushMode =</span> <span class="st">&quot;1D-axes&quot;</span>,</span>
+<span id="cb20-5"><a href="interactive-component.html#cb20-5"></a>          <span class="dt">reorderable =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb20-6"><a href="interactive-component.html#cb20-6"></a>          <span class="dt">queue =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb20-7"><a href="interactive-component.html#cb20-7"></a>          <span class="dt">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb20-8"><a href="interactive-component.html#cb20-8"></a>          <span class="dt">color =</span> <span class="kw">list</span>(<span class="dt">colorBy =</span> <span class="st">&quot;TagRank&quot;</span>, <span class="dt">colorScale =</span> <span class="st">&quot;scaleOrdinal&quot;</span>, <span class="dt">colorScheme =</span> <span class="st">&quot;schemeCategory10&quot;</span>),</span>
+<span id="cb20-9"><a href="interactive-component.html#cb20-9"></a>          <span class="dt">withD3 =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="parcoords html-widget" height="960" id="htmlwidget-941e659048e6565275f1" style="width:1536px;height:960px; position:relative; overflow-x:auto; overflow-y:hidden; max-width:100%;" width="1536"></div>
+<script type="application/json" data-for="htmlwidget-941e659048e6565275f1">{"x":{"data":{"names":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468","469","470","471","472","473","474","475","476","477","478","479","480","481","482","483","484","485","486","487","488","489","490","491","492","493","494","495","496","497","498","499","500","501","502","503"],"Tags":[".net","ajax","amazon-web-services","android","angular","angularjs","api","arrays","asp.net","asp.net-core","asp.net-mvc","azure","bash","c","c#","c++","css","dart","database","dataframe","django","docker","excel","firebase","flutter","git","html","ios","java","javascript","jquery","json","kotlin","laravel","linux","list","mongodb","multithreading","mysql","node.js","numpy","objective-c","oracle","pandas","php","postgresql","python","python-2.7","python-3.x","r","react-native","reactjs","regex","ruby","ruby-on-rails","spring","spring-boot","sql","sql-server","string","swift","tensorflow","twitter-bootstrap","typescript","vb.net","vba","vue.js","windows","wordpress","wpf","xcode","xml",".net","ajax","amazon-web-services","android","angular","angularjs","api","arrays","asp.net","asp.net-core","asp.net-mvc","azure","bash","c","c#","c++","css","dart","database","dataframe","django","docker","excel","firebase","git","html","ios","java","javascript","jquery","json","kotlin","laravel","linux","list","mongodb","multithreading","mysql","node.js","numpy","objective-c","oracle","pandas","php","postgresql","python","python-2.7","python-3.x","r","react-native","reactjs","regex","ruby","ruby-on-rails","spring","spring-boot","sql","sql-server","string","swift","tensorflow","twitter-bootstrap","typescript","vb.net","vba","vue.js","windows","wordpress","wpf","xcode","xml",".net","ajax","amazon-web-services","android","angular","angularjs","api","arrays","asp.net","asp.net-core","asp.net-mvc","azure","bash","c","c#","c++","css","dart","database","dataframe","django","docker","excel","firebase","flutter","git","html","ios","java","javascript","jquery","json","kotlin","laravel","linux","list","mongodb","multithreading","mysql","node.js","numpy","objective-c","oracle","pandas","php","postgresql","python","python-2.7","python-3.x","r","react-native","reactjs","regex","ruby","ruby-on-rails","spring","spring-boot","sql","sql-server","string","swift","tensorflow","twitter-bootstrap","typescript","vb.net","vba","vue.js","windows","wordpress","wpf","xcode","xml",".net","ajax","amazon-web-services","android","angular","angularjs","api","arrays","asp.net","asp.net-core","asp.net-mvc","azure","bash","c","c#","c++","css","dart","database","dataframe","django","docker","excel","firebase","flutter","git","html","ios","java","javascript","jquery","json","kotlin","laravel","linux","list","mongodb","multithreading","mysql","node.js","numpy","objective-c","oracle","pandas","php","postgresql","python","python-2.7","python-3.x","r","react-native","reactjs","regex","ruby","ruby-on-rails","spring","spring-boot","sql","sql-server","string","swift","tensorflow","twitter-bootstrap","typescript","vb.net","vba","vue.js","windows","wordpress","wpf","xcode","xml",".net","ajax","amazon-web-services","android","angular","angularjs","api","arrays","asp.net","asp.net-core","asp.net-mvc","azure","bash","c","c#","c++","css","dart","database","dataframe","django","docker","excel","firebase","flutter","git","html","ios","java","javascript","jquery","json","kotlin","laravel","linux","list","mongodb","multithreading","mysql","node.js","numpy","objective-c","oracle","pandas","php","postgresql","python","python-2.7","python-3.x","r","react-native","reactjs","regex","ruby","ruby-on-rails","spring","spring-boot","sql","sql-server","string","swift","tensorflow","twitter-bootstrap","typescript","vb.net","vba","vue.js","windows","wordpress","wpf","xcode","xml",".net","ajax","amazon-web-services","android","angular","angularjs","api","arrays","asp.net","asp.net-core","asp.net-mvc","azure","bash","c","c#","c++","css","dart","database","dataframe","django","docker","excel","firebase","flutter","git","html","ios","java","javascript","jquery","json","kotlin","laravel","linux","list","mongodb","multithreading","mysql","node.js","numpy","objective-c","oracle","pandas","php","postgresql","python","python-2.7","python-3.x","r","react-native","reactjs","regex","ruby","ruby-on-rails","spring","spring-boot","sql","sql-server","string","swift","tensorflow","twitter-bootstrap","typescript","vb.net","vba","vue.js","windows","wordpress","wpf","xcode","xml",".net","ajax","amazon-web-services","android","angular","angularjs","api","arrays","asp.net","asp.net-core","asp.net-mvc","azure","bash","c","c#","c++","css","dart","database","dataframe","django","docker","excel","firebase","flutter","git","html","ios","java","javascript","jquery","json","kotlin","laravel","linux","list","mongodb","multithreading","mysql","node.js","numpy","objective-c","oracle","pandas","php","postgresql","python","python-2.7","python-3.x","r","react-native","reactjs","regex","ruby","ruby-on-rails","spring","spring-boot","sql","sql-server","string","swift","tensorflow","twitter-bootstrap","typescript","vb.net","vba","vue.js","windows","wordpress","wpf","xcode","xml"],"year":["2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2015","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2016","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2017","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2018","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2019","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2020","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021","2021"],"TotalViews":[1176467,1274818,355380,6781691,652947,2147198,254350,1406710,1453181,178274,1211602,420462,655333,1101350,5121459,1959869,2650725,20505,444225,737844,527896,830297,1102153,105005,7379,731663,4347224,2764002,8307710,8452354,3365643,1265181,161763,1112914,1236323,215165,756842,348686,1646538,1797165,958143,525086,543638,1144880,4818900,504610,9925084,651381,1200283,1259261,311122,1581551,671520,421025,751266,1829342,697358,1358511,735837,585922,2032951,1710604,821027,884447,218961,704990,56369,1078857,344612,323855,627580,546331,721415,717508,509962,5302757,4530339,2196543,361608,1180190,1047256,290759,793256,371443,678207,647304,4611925,1506253,2442741,5373,514011,543084,918206,1421293,1166455,215860,615587,3914933,3200321,7081950,8796654,2479800,1574793,136867,992059,1030451,233541,613247,367205,1757722,2364443,899539,497757,464425,983000,3901373,534921,8742773,1088331,696554,1276574,521354,2752344,452796,400967,588807,1301168,786501,1424620,1046156,367191,1963373,409517,1668573,2101295,186884,819342,196518,590756,371730,315151,532020,658578,463785,526517,592560,4763548,3521368,622907,203563,1019487,518458,387534,464618,356570,458088,480564,2739270,1008986,2085471,176547,315106,508888,650228,1260495,843550,654110,215096,581422,2727215,1709281,5449469,7125244,1766480,1691537,940364,1093310,610773,244436,393617,220299,1098667,1962873,615617,121859,373908,1091418,2548897,438945,7662758,628571,1336684,1162958,694298,2717736,293511,188473,268358,1117659,950699,825980,559498,541380,1194752,560368,609186,1978044,122108,628836,740839,480692,385537,212358,468109,256405,259216,144462,504898,2933486,2656701,88004,172920,885327,228087,475608,130327,363657,175548,447041,1745570,673950,1018867,831058,198681,248562,480294,674085,363192,615255,1180510,312184,1240622,1365822,3227595,4228820,610853,623418,377854,777162,284958,193468,247486,125566,786464,1348905,299554,80179,163866,684487,1613410,276811,4916454,222229,1169034,635454,858467,2549830,163281,107322,171524,659891,881237,496575,325875,196882,673471,438008,162879,1416231,55641,267051,779338,559057,245825,61578,802072,99582,119972,44388,263920,891733,986559,15488,110410,181008,108302,444887,69012,287597,77320,150167,975005,351459,331527,270490,65580,103711,198102,319301,126528,218538,528788,124254,429173,459049,1102071,1822818,151075,302938,186242,446050,145135,69888,76486,39944,235957,717011,112168,20907,82349,261772,615044,153798,2391620,19182,589261,279918,446841,1336384,63881,49055,84855,253432,396268,223253,149254,55762,386897,195102,18427,656021,20672,85218,351582,125811,101679,35476,144863,53646,116189,24094,192105,868544,490179,13546,88617,107218,79755,193080,45080,179540,52204,106099,565511,209079,219501,182747,42291,61203,166325,269159,79747,150127,483251,77755,274305,281419,876885,1129465,99245,131315,115457,219244,114854,52616,92012,26732,135425,388522,75469,13191,54028,169381,285553,82459,1535791,7704,372801,182276,286319,842004,39541,31883,50599,142679,303060,128809,95901,42517,249701,130989,20907,309683,13197,50304,217147,72216,64255,18193,101738,35274,12465,6396,16824,56298,28629,2335,10606,36964,7540,14758,4898,13927,11545,38872,77546,74403,43978,19575,9953,20426,22639,19108,19656,15519,40830,10142,65794,22901,103212,179098,21242,22477,16458,20459,14462,14737,13326,6616,23280,52918,14188,1588,7629,41710,46795,14716,246550,1356,46417,46198,16739,83422,15373,4836,6819,12838,18473,38435,16263,11403,26863,12884,1537,29448,5035,14304,17426,8857,11291,5196,6028,5880],"TagCount":[547,624,207,3641,45,1565,195,1096,711,56,475,202,352,988,3398,1885,1976,26,381,96,501,155,597,59,2,398,2943,2198,4913,5836,2750,893,24,324,561,288,378,374,1638,882,162,724,332,264,3757,313,3317,369,294,977,88,248,652,561,863,440,124,1194,732,427,1175,41,423,111,325,458,17,344,430,348,382,508,508,580,252,3595,313,1610,228,1003,732,78,553,277,366,762,3476,1610,1826,22,412,121,549,206,695,120,342,2860,2063,4702,5997,2691,910,28,435,540,262,441,297,1663,1003,221,620,351,273,3843,357,3445,407,375,959,125,336,619,571,850,508,132,1252,762,391,1178,64,429,193,324,516,29,330,437,334,286,486,434,570,360,3061,1174,938,229,1003,624,178,437,338,416,722,3172,1327,1848,27,419,239,640,336,828,474,22,335,2878,1479,4199,6047,2295,996,167,548,479,289,415,284,1470,1174,257,278,326,528,3430,373,4386,393,694,1230,286,828,497,403,543,562,309,1375,809,360,1056,319,368,504,273,680,170,309,506,298,278,467,414,362,461,2772,1500,269,276,972,414,302,317,375,340,706,2883,1371,1509,156,358,382,671,432,740,605,241,304,2276,1142,3846,5474,1371,808,300,725,358,310,392,221,1185,1350,291,143,349,904,2656,392,5559,244,1504,1333,553,1351,513,285,419,509,538,1372,814,380,1016,363,138,712,211,539,447,245,507,231,313,335,379,262,461,2226,1436,110,295,952,343,388,229,459,341,806,2770,1552,1298,307,345,513,815,483,754,465,595,307,2054,950,3412,5175,961,840,430,817,349,413,392,203,1040,1303,381,95,381,1181,2045,472,6851,116,1748,1418,592,1862,484,232,328,488,624,1453,699,348,973,349,89,899,166,562,509,329,391,202,259,295,377,262,542,2205,1246,112,372,917,311,428,233,457,355,740,2459,1413,1366,361,320,509,889,551,676,543,816,361,2089,854,3423,5480,937,785,401,795,447,407,465,186,1022,1402,362,78,344,1224,1777,498,7004,69,1574,1523,619,2054,449,203,309,495,646,1379,637,364,942,391,90,835,171,522,546,297,399,188,264,281,369,227,623,1884,927,66,414,971,265,390,166,402,290,685,2103,1420,1410,478,373,674,876,552,601,546,1106,304,2112,723,2791,5492,699,668,499,696,461,385,525,175,830,1583,411,57,251,1336,1587,498,7677,51,1471,1497,642,2474,391,132,207,410,578,1145,450,290,831,404,63,873,135,403,556,303,508,157,226,211],"TotalComments":[1498,1792,307,7428,36,2941,311,3367,1719,102,1373,290,1134,4162,9369,6930,4490,42,1023,179,827,183,1550,93,1,662,7096,4300,12277,14103,6869,2377,43,694,1325,793,610,1233,4562,1605,425,1634,839,414,10467,728,7144,766,651,2200,118,324,1934,1036,1440,941,225,3340,2039,1211,2026,80,750,110,889,1245,19,857,762,714,731,921,1315,1790,308,8209,478,3154,343,2824,1812,146,1644,325,888,3408,9702,5754,4135,64,1001,166,1055,292,1509,219,586,6848,4255,11508,13846,6918,2322,45,968,1194,650,727,879,4956,1808,499,1455,837,465,11127,713,7402,860,800,2139,187,499,1864,1299,1470,976,197,3441,2382,1071,2586,74,839,294,857,1159,55,931,797,734,576,943,1263,1904,570,6548,2700,1980,434,2963,1613,402,1170,489,1047,3729,9504,5168,4217,16,1022,399,1245,638,2130,882,27,726,7046,3207,10994,15100,5847,2297,265,1427,1202,721,1013,919,4177,2360,538,692,799,869,9724,764,10035,919,1524,2625,439,1447,1694,903,1069,1233,578,3663,2493,1236,2331,389,770,1013,813,2002,408,782,872,840,599,884,1327,1130,658,6068,3318,523,477,2858,1004,758,1037,615,933,3164,9076,5657,3468,276,832,713,1382,698,1959,1145,425,536,5502,2549,9979,13349,3769,1949,570,1837,930,889,726,745,3453,2504,713,387,878,1646,8072,808,12647,638,3341,2704,918,2545,1649,668,876,1142,1190,3894,2533,1098,2509,533,295,1492,733,1605,969,696,1034,590,765,646,1096,743,727,4745,2748,209,529,2700,841,880,659,684,974,3634,8384,6047,2912,448,730,833,1780,1014,2265,864,875,683,4691,1892,8770,12037,2582,1957,837,2193,948,925,769,812,2849,2497,949,166,838,2189,5838,943,14979,247,3722,2684,947,3313,1472,448,609,1087,1360,3825,2304,1041,2102,604,180,1660,604,1853,889,921,639,590,505,700,955,662,793,3680,2411,130,659,2286,732,925,532,620,922,3151,7070,5198,2551,475,682,846,1568,900,1998,888,1096,644,4063,1543,7694,11516,2017,1805,679,1559,1146,1024,857,529,2775,2480,769,147,700,2209,4508,861,14615,152,2971,2598,763,3736,1259,438,528,995,1152,3171,1740,1127,1776,544,139,1599,506,1698,869,660,551,419,495,568,964,514,811,2700,1125,80,543,2411,518,862,317,582,774,2839,5690,5129,2177,533,744,864,1317,877,1420,704,1066,608,3624,1008,5575,9972,1382,1440,724,1143,996,937,683,485,2181,2228,703,64,472,1973,3801,908,13559,92,2590,2029,549,3740,933,185,302,600,929,2650,1484,708,1389,543,48,1402,371,1128,695,628,507,268,338,324],"AcceptedAnswers":[293,283,94,1562,23,799,81,688,323,31,242,95,229,542,1747,1009,1150,18,179,72,268,80,282,29,2,228,1661,1024,2373,3169,1496,461,18,174,276,179,194,177,838,473,101,368,153,174,1817,151,1863,194,171,559,34,139,444,320,436,186,63,694,380,262,624,30,240,62,152,237,12,149,174,169,157,263,274,275,118,1456,199,751,97,617,323,47,273,132,233,415,1789,877,962,15,189,96,299,106,333,47,183,1470,943,2244,3126,1353,465,22,211,229,170,226,161,800,502,147,295,189,183,1799,196,1862,240,230,538,54,194,422,324,424,235,69,719,401,249,609,34,237,123,156,248,19,143,170,181,123,242,196,248,156,1196,541,407,91,589,242,79,182,169,244,365,1543,658,972,17,175,157,299,162,388,193,15,154,1461,600,1888,3081,1163,513,115,259,216,177,190,132,684,548,166,94,147,379,1510,184,2305,186,364,651,122,447,334,214,270,229,136,714,392,213,505,153,187,286,99,324,99,109,172,157,106,221,193,154,170,1080,699,97,118,568,150,147,136,171,172,338,1351,664,747,82,138,245,338,182,311,255,102,149,1125,498,1641,2737,706,416,155,346,147,193,172,101,547,583,170,60,156,554,1189,192,2856,122,786,717,208,656,328,139,195,199,194,735,385,240,501,138,69,412,92,236,214,88,185,112,142,161,151,89,175,775,595,38,104,522,127,184,86,200,179,358,1246,737,601,166,142,308,341,194,308,226,279,135,938,359,1348,2368,427,423,196,397,153,242,160,83,448,550,187,30,186,681,849,226,3222,42,807,756,227,797,308,110,131,165,209,775,353,188,443,107,42,438,66,216,240,110,124,95,107,132,137,86,183,697,496,44,132,486,103,182,77,205,193,317,1021,636,584,148,121,292,345,185,274,236,326,129,891,297,1264,2412,396,385,169,309,151,224,187,64,392,526,194,23,162,642,641,213,3005,25,672,827,209,858,258,85,111,165,205,694,298,199,394,119,45,401,60,218,242,89,119,82,99,122,105,46,151,412,275,12,94,409,44,130,44,139,130,274,652,470,469,148,87,344,207,157,167,156,279,94,659,148,731,1803,221,245,157,162,118,183,151,58,220,404,192,9,81,621,386,188,2563,19,509,649,140,757,214,39,55,101,117,484,171,148,248,95,19,345,34,134,203,63,103,48,42,68],"TagRank":["30","29","45","4","15","47","27","31","28","17","16","39","6","58","61","8","14","50","32","40","55","59","42","9","53","2","23","54","35","1","72","21","11","66","56","69","60","63","26","71","19","37","38","48","13","70","68","43","65","34","46","49","36","44","52","3","12","7","41","22","57","64","20","51","24","10","5","62","18","33","67","25","29","28","44","4","15","46","26","30","27","17","38","16","6","57","60","39","8","49","31","54","58","14","9","23","41","52","2","53","11","21","34","65","55","1","71","36","68","33","62","19","47","59","48","13","45","42","25","51","69","67","64","5","37","70","12","43","35","3","7","40","22","63","56","50","20","24","10","61","66","32","18","30","47","29","45","15","4","27","31","17","28","39","58","16","50","40","5","61","8","32","6","52","23","59","14","49","66","21","9","2","56","34","55","44","69","64","53","35","24","72","11","1","19","13","37","54","48","46","63","60","3","12","22","26","43","62","68","57","70","36","51","38","71","42","65","41","20","7","10","67","33","18","25","47","30","29","15","4","45","27","17","49","5","58","31","16","52","40","50","39","28","61","8","44","59","32","23","34","64","14","21","24","51","66","57","53","56","69","3","67","22","55","9","1","46","37","20","60","12","62","2","35","19","43","13","72","11","71","36","26","10","33","41","54","7","6","68","48","25","70","38","65","18","42","63","47","30","29","15","4","27","45","52","49","16","58","5","50","40","17","44","39","61","31","8","28","64","32","34","21","14","23","59","57","25","51","66","20","67","56","53","22","46","24","3","12","33","36","37","69","10","43","41","1","62","35","60","19","9","13","68","55","26","18","72","7","2","71","54","11","38","70","65","48","6","42","63","47","30","29","15","4","27","52","45","49","50","16","40","58","17","5","44","39","61","31","8","21","28","64","25","34","32","14","23","57","59","51","22","67","24","3","66","20","46","56","37","12","53","35","10","36","33","69","62","1","7","60","41","26","18","13","43","19","9","55","68","72","71","2","11","54","70","38","65","6","63","42","48","47","30","29","52","27","15","4","45","40","50","49","16","17","44","58","25","8","5","21","64","61","39","28","31","34","14","20","32","51","3","23","57","67","22","24","37","69","33","46","18","35","59","7","41","56","62","66","12","53","10","36","19","1","26","68","60","13","9","43","2","71","72","55","38","11","70","65","54","6","63","42","48"]},"options":{"rownames":false,"color":{"colorBy":"TagRank","colorScale":"scaleOrdinal","colorScheme":"schemeCategory10"},"brushMode":"1D-axes","brushPredicate":"AND","reorderable":true,"margin":{"top":50,"bottom":50,"left":100,"right":50},"alpha":0.5,"mode":"queue","bundlingStrength":0.5,"smoothness":0},"autoresize":false,"tasks":null},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="interactive-component.html#cb21-1"></a><span class="co"># &lt;head&gt;</span></span>
+<span id="cb21-2"><a href="interactive-component.html#cb21-2"></a><span class="co"># &lt;title&gt;d3.js Canvas Parallel Coordinates&lt;/title&gt;</span></span>
+<span id="cb21-3"><a href="interactive-component.html#cb21-3"></a><span class="co"># &lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;&gt;&lt;/script&gt;</span></span>
+<span id="cb21-4"><a href="interactive-component.html#cb21-4"></a><span class="co"># &lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span></span>
+<span id="cb21-5"><a href="interactive-component.html#cb21-5"></a><span class="co"># &lt;script src=&quot;http://underscorejs.org/underscore-min.js&quot;&gt;&lt;/script&gt;</span></span>
+<span id="cb21-6"><a href="interactive-component.html#cb21-6"></a><span class="co"># &lt;script src=&quot;_include/js/lib/d3.parcoords.js&quot;&gt;&lt;/script&gt;</span></span>
+<span id="cb21-7"><a href="interactive-component.html#cb21-7"></a><span class="co"># &lt;script src=&quot;_include/js/lib/d3.underscore.math.js&quot;&gt;&lt;/script&gt;</span></span>
+<span id="cb21-8"><a href="interactive-component.html#cb21-8"></a><span class="co"># &lt;script src=&quot;_include/js/lib/d3.divgrid.js&quot;&gt;&lt;/script&gt;</span></span>
+<span id="cb21-9"><a href="interactive-component.html#cb21-9"></a><span class="co"># &lt;link rel=&quot;stylesheet&quot; href=&quot;_include/css/fonts/droid.css&quot; type=&quot;text/css&quot; charset=&quot;utf-8&quot; /&gt;</span></span>
+<span id="cb21-10"><a href="interactive-component.html#cb21-10"></a><span class="co"># &lt;link href=&quot;_include/css/d3.parcoords.css&quot; rel=&quot;stylesheet&quot;&gt;</span></span>
+<span id="cb21-11"><a href="interactive-component.html#cb21-11"></a><span class="co"># &lt;link href=&quot;_include/css/bigdata.parallelcoordinates.css&quot; rel=&quot;stylesheet&quot;&gt;</span></span>
+<span id="cb21-12"><a href="interactive-component.html#cb21-12"></a><span class="co"># &lt;/head&gt;</span></span>
+<span id="cb21-13"><a href="interactive-component.html#cb21-13"></a><span class="co"># &lt;body&gt;</span></span>
+<span id="cb21-14"><a href="interactive-component.html#cb21-14"></a><span class="co"># &lt;button id=&quot;keep-data&quot;&gt;Keep&lt;/button&gt;</span></span>
+<span id="cb21-15"><a href="interactive-component.html#cb21-15"></a><span class="co"># &lt;button id=&quot;exclude-data&quot;&gt;Exclude&lt;/button&gt;</span></span>
+<span id="cb21-16"><a href="interactive-component.html#cb21-16"></a><span class="co"># &lt;button id=&quot;reset-data&quot;&gt;Reset&lt;/button&gt;</span></span>
+<span id="cb21-17"><a href="interactive-component.html#cb21-17"></a><span class="co"># &lt;br&gt;</span></span>
+<span id="cb21-18"><a href="interactive-component.html#cb21-18"></a><span class="co"># &lt;div id=&quot;wrapper&quot; class=&quot;parcoords&quot; style=&quot;width:100%;height:340px&quot;&gt;</span></span>
+<span id="cb21-19"><a href="interactive-component.html#cb21-19"></a><span class="co"># &lt;div id=&quot;desc&quot;&gt;</span></span>
+<span id="cb21-20"><a href="interactive-component.html#cb21-20"></a><span class="co"># &lt;div id=&quot;title&quot;&gt;&lt;span class=&quot;large&quot;&gt;Parallel Coordinates&lt;/span&gt;&lt;/div&gt;</span></span>
+<span id="cb21-21"><a href="interactive-component.html#cb21-21"></a><span class="co"># &lt;br&gt;</span></span>
+<span id="cb21-22"><a href="interactive-component.html#cb21-22"></a><span class="co"># a d3.js visualisation using data from Stack Overflow</span></span>
+<span id="cb21-23"><a href="interactive-component.html#cb21-23"></a><span class="co"># &lt;br&gt;&lt;br&gt;Drag around axis to begin brush&lt;br&gt;</span></span>
+<span id="cb21-24"><a href="interactive-component.html#cb21-24"></a><span class="co"># Click axis to clear brush&lt;br&gt;Click a label to color data by z-scores</span></span>
+<span id="cb21-25"><a href="interactive-component.html#cb21-25"></a><span class="co"># &lt;/div&gt;</span></span>
+<span id="cb21-26"><a href="interactive-component.html#cb21-26"></a><span class="co"># &lt;/div&gt;</span></span>
+<span id="cb21-27"><a href="interactive-component.html#cb21-27"></a><span class="co"># &lt;/body&gt;</span></span>
+<span id="cb21-28"><a href="interactive-component.html#cb21-28"></a><span class="co"># &lt;div id=&quot;grid&quot;&gt;&lt;/div&gt;</span></span>
+<span id="cb21-29"><a href="interactive-component.html#cb21-29"></a><span class="co"># &lt;script type=&quot;text/javascript&quot; src=&quot;_include/js/bigdata.parallelcoordinates.js&quot;&gt;&lt;/script&gt;</span></span></code></pre></div>
 
 </div>
             </section>
@@ -138,7 +247,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/06-interactive.Rmd",
+"link": "https://github.com/kattywu/EDAV-Stackoverflow/edit/main/06-interactive.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -146,7 +255,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/06-interactive.Rmd",
+"link": "https://github.com/kattywu/EDAV-Stackoverflow/blob/main/06-interactive.Rmd",
 "text": null
 },
 "download": null,

@@ -22,14 +22,14 @@ library(ggridges)
 
 
 
-```{r}
+```{r, message=FALSE}
 df1_count <- df1 %>%
   group_by(year, Tags) %>%
   summarise(TotalViews = sum(ViewCount), TagCount = length(Tags), TotalComments = sum(CommentCount), AcceptedAnswers = sum(as.integer(as.character(AcceptAnswer))), TotalAnswers = sum(AnswerCount)) %>%
   mutate(TagRank = as.factor(order(TagCount,year,Tags, decreasing = T))) 
 ```
 
-```{r}
+```{r, message=FALSE}
 initial_rank <- df1_count %>% filter(year==2015) %>% dplyr::select(Tags, TagRank)
 initial_rank <- initial_rank %>% rename(InitialRank = TagRank)
 initial_rank <- initial_rank[,2:3] 
@@ -137,7 +137,7 @@ treemap(df1_count, index = c("year", "Tags"), vSize = "AcceptedAnswers" )
 
 
 
-```{r, fig.height=3}
+```{r, fig.height=15}
 year2015 <- df1_count %>%
   group_by(Tags) %>%
   filter(year == 2020) %>%

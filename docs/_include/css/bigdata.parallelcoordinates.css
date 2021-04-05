@@ -4,11 +4,11 @@
     font-size: 16px;
     font-weight: normal;
     line-height: 28px;
-    width:1024px;
+    width:2024px;
 }
 
 text {
-  fill: white;
+  fill: black;
 }
 
 
@@ -31,7 +31,7 @@ text {
 #title {
   font-size: 24px;
   font-weight: 100;
-  color: white;
+  color: black;
 }
 #title div.large, #title span.large {
   font-size: 36px;
@@ -72,7 +72,7 @@ button:hover {
 
 
 /* data table styles */
-#grid { height: 198px; color:white; clear: both; position:relative; top: 60px; left: 15px }
+#grid { height: 198px; color:black; clear: both; position:relative; top: 60px; left: 15px }
 .row, .header { clear: left; font-size: 14px; line-height: 18px; height: 20px; margin: 5px; width:1120px }
 .row:hover {text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;}
 .row:nth-child(odd) { background: rgba(0,0,0,0.05); }

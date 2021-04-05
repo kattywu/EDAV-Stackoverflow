@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Results | YOUR TITLE HERE</title>
-  <meta name="description" content="Chapter 5 Results | YOUR TITLE HERE" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <title>Chapter 5 Results | Stack Overflow Tags Over Time</title>
+  <meta name="description" content="Chapter 5 Results | Stack Overflow Tags Over Time" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Results | YOUR TITLE HERE" />
+  <meta property="og:title" content="Chapter 5 Results | Stack Overflow Tags Over Time" />
   <meta property="og:type" content="book" />
   
   
@@ -16,15 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Results | YOUR TITLE HERE" />
+  <meta name="twitter:title" content="Chapter 5 Results | Stack Overflow Tags Over Time" />
   
   
   
 
-<meta name="author" content="YOUR NAMES HERE" />
+<meta name="author" content="Emily Jennings-Dobbs and Yingyao Wu" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2021-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="missing-values.html"/>
 <link rel="next" href="interactive-component.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,8 +51,76 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/parallel-coordinates-2.1.8/parcoords.css" rel="stylesheet" />
+<script src="libs/parcoords-binding-1.0.0/parcoords.js"></script>
+<script src="libs/d3-5.16.0/d3.min.js"></script>
 
 
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -68,14 +135,16 @@
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">SHORT TITLE HERE</a></li>
+<li><a href="./">Stack Overflow Tags</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#top-tags-over-time"><i class="fa fa-check"></i><b>5.1</b> Top Tags over time</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -89,7 +158,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">YOUR TITLE HERE</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Stack Overflow Tags Over Time</a>
           </h1>
         </div>
 
@@ -97,9 +166,144 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="results" class="section level1" number="5">
+<div id="results" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
+<div id="top-tags-over-time" class="section level2">
+<h2><span class="header-section-number">5.1</span> Top Tags over time</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="results.html#cb6-1"></a>df1_count &lt;-<span class="st"> </span>df1 <span class="op">%&gt;%</span></span>
+<span id="cb6-2"><a href="results.html#cb6-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, Tags) <span class="op">%&gt;%</span></span>
+<span id="cb6-3"><a href="results.html#cb6-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">TotalViews =</span> <span class="kw">sum</span>(ViewCount), <span class="dt">TagCount =</span> <span class="kw">length</span>(Tags), <span class="dt">TotalComments =</span> <span class="kw">sum</span>(CommentCount), <span class="dt">AcceptedAnswers =</span> <span class="kw">sum</span>(<span class="kw">as.integer</span>(<span class="kw">as.character</span>(AcceptAnswer))), <span class="dt">TotalAnswers =</span> <span class="kw">sum</span>(AnswerCount)) <span class="op">%&gt;%</span></span>
+<span id="cb6-4"><a href="results.html#cb6-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TagRank =</span> <span class="kw">as.factor</span>(<span class="kw">order</span>(TagCount,year,Tags, <span class="dt">decreasing =</span> T))) </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="results.html#cb7-1"></a>initial_rank &lt;-<span class="st"> </span>df1_count <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2015</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags, TagRank)</span>
+<span id="cb7-2"><a href="results.html#cb7-2"></a>initial_rank &lt;-<span class="st"> </span>initial_rank <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="dt">InitialRank =</span> TagRank)</span>
+<span id="cb7-3"><a href="results.html#cb7-3"></a>initial_rank &lt;-<span class="st"> </span>initial_rank[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>] </span>
+<span id="cb7-4"><a href="results.html#cb7-4"></a></span>
+<span id="cb7-5"><a href="results.html#cb7-5"></a>df1_count &lt;-<span class="st"> </span><span class="kw">left_join</span>(df1_count, initial_rank) <span class="op">%&gt;%</span></span>
+<span id="cb7-6"><a href="results.html#cb7-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">InitialRank =</span> <span class="kw">cut</span>(<span class="kw">as.numeric</span>(InitialRank), <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">75</span>,<span class="dv">5</span>), <span class="dt">right =</span> F))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="results.html#cb8-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggpairs</span>(df1_count <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(year,TotalViews,TagCount,TotalComments, AcceptedAnswers,TotalAnswers), <span class="kw">aes</span>(<span class="dt">color=</span>year)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="results.html#cb8-2"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb8-3"><a href="results.html#cb8-3"></a><span class="st">  </span><span class="kw">theme_update</span>(<span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">15</span>))</span>
+<span id="cb8-4"><a href="results.html#cb8-4"></a></span>
+<span id="cb8-5"><a href="results.html#cb8-5"></a></span>
+<span id="cb8-6"><a href="results.html#cb8-6"></a><span class="co">#scale colors</span></span>
+<span id="cb8-7"><a href="results.html#cb8-7"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>p<span class="op">$</span>nrow) {</span>
+<span id="cb8-8"><a href="results.html#cb8-8"></a>  <span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>p<span class="op">$</span>ncol){</span>
+<span id="cb8-9"><a href="results.html#cb8-9"></a>    p[i,j] &lt;-<span class="st"> </span>p[i,j] <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-10"><a href="results.html#cb8-10"></a><span class="st">        </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span><span class="kw">rev</span>(<span class="kw">c</span>(<span class="st">&quot;#1B9E77&quot;</span>, <span class="st">&quot;#D95F02&quot;</span>, <span class="st">&quot;#7570B3&quot;</span>, <span class="st">&quot;#E7298A&quot;</span>, <span class="st">&quot;#66A61E&quot;</span>, <span class="st">&quot;#E6AB02&quot;</span>, <span class="st">&quot;#A6761D&quot;</span>))) <span class="op">+</span></span>
+<span id="cb8-11"><a href="results.html#cb8-11"></a><span class="st">        </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span><span class="kw">rev</span>(<span class="kw">c</span>(<span class="st">&quot;#1B9E77&quot;</span>, <span class="st">&quot;#D95F02&quot;</span>, <span class="st">&quot;#7570B3&quot;</span>, <span class="st">&quot;#E7298A&quot;</span>, <span class="st">&quot;#66A61E&quot;</span>, <span class="st">&quot;#E6AB02&quot;</span>, <span class="st">&quot;#A6761D&quot;</span>)))  </span>
+<span id="cb8-12"><a href="results.html#cb8-12"></a>  }</span>
+<span id="cb8-13"><a href="results.html#cb8-13"></a>}</span>
+<span id="cb8-14"><a href="results.html#cb8-14"></a></span>
+<span id="cb8-15"><a href="results.html#cb8-15"></a>p</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-19-1.png" width="1920" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="results.html#cb9-1"></a><span class="co">#TagCount, TotalComments, AcceptedAnswers, and TotalAnswers are all heavily correlated. Only need to use one or two to monitor the popularity of tags over years </span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="results.html#cb10-1"></a><span class="kw">grid.arrange</span>(</span>
+<span id="cb10-2"><a href="results.html#cb10-2"></a>df1_count <span class="op">%&gt;%</span></span>
+<span id="cb10-3"><a href="results.html#cb10-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(year, TotalComments, AcceptedAnswers, TotalAnswers) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-4"><a href="results.html#cb10-4"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-5"><a href="results.html#cb10-5"></a><span class="st">  </span><span class="kw">summarise_all</span>(sum) <span class="op">%&gt;%</span></span>
+<span id="cb10-6"><a href="results.html#cb10-6"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Type&quot;</span>,<span class="st">&quot;Value&quot;</span>,<span class="op">-</span>year) <span class="op">%&gt;%</span></span>
+<span id="cb10-7"><a href="results.html#cb10-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(year, Value, <span class="dt">fill =</span> Type)) <span class="op">+</span></span>
+<span id="cb10-8"><a href="results.html#cb10-8"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
+<span id="cb10-9"><a href="results.html#cb10-9"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&quot;legend&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;TotalComments&quot;</span> =<span class="st"> &quot;#0072B2&quot;</span>, <span class="st">&quot;AcceptedAnswers&quot;</span> =<span class="st"> &quot;#D55E00&quot;</span>, <span class="st">&quot;TotalAnswers&quot;</span> =<span class="st"> &quot;#CC79A7&quot;</span>)) <span class="op">+</span></span>
+<span id="cb10-10"><a href="results.html#cb10-10"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb10-11"><a href="results.html#cb10-11"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Sum of Variables by Year&quot;</span>),</span>
+<span id="cb10-12"><a href="results.html#cb10-12"></a>df1_count <span class="op">%&gt;%</span></span>
+<span id="cb10-13"><a href="results.html#cb10-13"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(year, TotalViews) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-14"><a href="results.html#cb10-14"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-15"><a href="results.html#cb10-15"></a><span class="st">  </span><span class="kw">summarise_all</span>(sum) <span class="op">%&gt;%</span></span>
+<span id="cb10-16"><a href="results.html#cb10-16"></a><span class="st">  </span><span class="kw">gather</span>(<span class="st">&quot;Type&quot;</span>,<span class="st">&quot;Value&quot;</span>,<span class="op">-</span>year) <span class="op">%&gt;%</span></span>
+<span id="cb10-17"><a href="results.html#cb10-17"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(year, Value, <span class="dt">fill =</span> Type)) <span class="op">+</span></span>
+<span id="cb10-18"><a href="results.html#cb10-18"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span></span>
+<span id="cb10-19"><a href="results.html#cb10-19"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&quot;legend&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;TotalViews&quot;</span> =<span class="st"> &quot;#E69F00&quot;</span>)) <span class="op">+</span></span>
+<span id="cb10-20"><a href="results.html#cb10-20"></a><span class="st">  </span><span class="kw">theme_bw</span>(),<span class="dt">ncol=</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="results.html#cb11-1"></a><span class="co">#It appears views accumulate over time, total popularity/usage of tag may have to be computed overall. Current usage of Tag not reflected in views. Answers accumulate over time to a lesser degree. AcceptedAnswers seem to be pretty stable but haven&#39;t had time to fully accumulate for past 2 years.</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="results.html#cb12-1"></a>df1_count <span class="op">%&gt;%</span></span>
+<span id="cb12-2"><a href="results.html#cb12-2"></a><span class="st">  </span><span class="kw">group_by</span>(Tags) <span class="op">%&gt;%</span></span>
+<span id="cb12-3"><a href="results.html#cb12-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(TotalViews, TotalAnswers)) <span class="op">+</span></span>
+<span id="cb12-4"><a href="results.html#cb12-4"></a><span class="st">  </span><span class="kw">geom_hex</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-5"><a href="results.html#cb12-5"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Total Views vs Total Answers&quot;</span>) <span class="op">+</span></span>
+<span id="cb12-6"><a href="results.html#cb12-6"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Total Views&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-7"><a href="results.html#cb12-7"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Total Answers&quot;</span>)</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>For tags with less than 5,000 answers, as the total number of views per tag increases, the total number of answers provided tend to increase as well, with an exception of a tag having about 5 million views but less than 1250 answers, which may be an outlier tag. This suggests that the more view a tag has, the more answers it is likely to have. Also, many of the tags have relatively low views and few answers.</p>
+<p>For tags that have more than 5,000 answers, the amount of views vary from lowest to greatest, suggesting little to no correlation between the number of views a tag in this group has and number of answers it has received.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="results.html#cb13-1"></a>getPalette =<span class="st"> </span><span class="kw">colorRampPalette</span>(<span class="kw">brewer.pal</span>(<span class="dv">9</span>, <span class="st">&quot;BuGn&quot;</span>))</span>
+<span id="cb13-2"><a href="results.html#cb13-2"></a></span>
+<span id="cb13-3"><a href="results.html#cb13-3"></a>df1_count<span class="op">$</span>Ranking&lt;-<span class="kw">cut</span>(<span class="kw">as.numeric</span>(df1_count<span class="op">$</span>TagRank), <span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">75</span>,<span class="dv">5</span>), <span class="dt">right=</span><span class="ot">FALSE</span>)</span>
+<span id="cb13-4"><a href="results.html#cb13-4"></a>colourCount =<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(df1_count<span class="op">$</span>Ranking))</span>
+<span id="cb13-5"><a href="results.html#cb13-5"></a></span>
+<span id="cb13-6"><a href="results.html#cb13-6"></a><span class="kw">ggplot</span>(df1_count,</span>
+<span id="cb13-7"><a href="results.html#cb13-7"></a>       <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">stratum =</span> TagRank, <span class="dt">alluvium =</span> Tags,</span>
+<span id="cb13-8"><a href="results.html#cb13-8"></a>           <span class="dt">fill =</span> InitialRank, <span class="dt">label =</span> Tags)) <span class="op">+</span></span>
+<span id="cb13-9"><a href="results.html#cb13-9"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">rev</span>(<span class="kw">getPalette</span>(colourCount))) <span class="op">+</span></span>
+<span id="cb13-10"><a href="results.html#cb13-10"></a><span class="st">  </span><span class="kw">scale_x_discrete</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb13-11"><a href="results.html#cb13-11"></a><span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="op">+</span></span>
+<span id="cb13-12"><a href="results.html#cb13-12"></a><span class="st">  </span><span class="kw">geom_flow</span>(<span class="dt">stat =</span> <span class="st">&quot;alluvium&quot;</span>, <span class="dt">lode.guidance =</span> <span class="st">&quot;frontback&quot;</span>,</span>
+<span id="cb13-13"><a href="results.html#cb13-13"></a>            <span class="dt">color =</span> <span class="st">&quot;darkgray&quot;</span>) <span class="op">+</span></span>
+<span id="cb13-14"><a href="results.html#cb13-14"></a><span class="st">  </span><span class="kw">geom_stratum</span>(<span class="dt">width =</span> <span class="dv">3</span><span class="op">/</span><span class="dv">7</span>) <span class="op">+</span></span>
+<span id="cb13-15"><a href="results.html#cb13-15"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">stat =</span> <span class="st">&quot;alluvium&quot;</span>, <span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">after_stat</span>(alluvium)), <span class="dt">size=</span><span class="dv">8</span>) <span class="op">+</span></span>
+<span id="cb13-16"><a href="results.html#cb13-16"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>, <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">face =</span> <span class="st">&quot;bold&quot;</span>)) <span class="op">+</span></span>
+<span id="cb13-17"><a href="results.html#cb13-17"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Frequency of Tags by Year&quot;</span>) </span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" width="2880" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="results.html#cb14-1"></a><span class="co">#Tags being used in new posts change drastically in popularity over time. Some notable trends include; amazon-web-services staying in the same rank over several years, android maintained rank for 3 years from 2018 to 2020</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="results.html#cb15-1"></a><span class="kw">treemap</span>(df1_count, <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Tags&quot;</span>), <span class="dt">vSize =</span> <span class="st">&quot;TagCount&quot;</span> )</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-23-1.png" width="1920" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="results.html#cb16-1"></a><span class="kw">treemap</span>(df1_count, <span class="dt">index =</span> <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;Tags&quot;</span>), <span class="dt">vSize =</span> <span class="st">&quot;AcceptedAnswers&quot;</span> )</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-23-2.png" width="1920" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="results.html#cb17-1"></a><span class="co">#nearly identical but with notable differences; python and javascript always have a large proportion </span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="results.html#cb18-1"></a>year2015 &lt;-<span class="st"> </span>df1_count <span class="op">%&gt;%</span></span>
+<span id="cb18-2"><a href="results.html#cb18-2"></a><span class="st">  </span><span class="kw">group_by</span>(Tags) <span class="op">%&gt;%</span></span>
+<span id="cb18-3"><a href="results.html#cb18-3"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2020</span>) <span class="op">%&gt;%</span></span>
+<span id="cb18-4"><a href="results.html#cb18-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diff2015 =</span> TagCount) <span class="op">%&gt;%</span></span>
+<span id="cb18-5"><a href="results.html#cb18-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags, diff2015, TagCount)</span>
+<span id="cb18-6"><a href="results.html#cb18-6"></a></span>
+<span id="cb18-7"><a href="results.html#cb18-7"></a>year2020 &lt;-<span class="st"> </span>df1_count <span class="op">%&gt;%</span></span>
+<span id="cb18-8"><a href="results.html#cb18-8"></a><span class="st">  </span><span class="kw">group_by</span>(Tags) <span class="op">%&gt;%</span></span>
+<span id="cb18-9"><a href="results.html#cb18-9"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2015</span>) <span class="op">%&gt;%</span></span>
+<span id="cb18-10"><a href="results.html#cb18-10"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diff2020 =</span> TagCount) <span class="op">%&gt;%</span></span>
+<span id="cb18-11"><a href="results.html#cb18-11"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags, diff2020, TagCount)</span>
+<span id="cb18-12"><a href="results.html#cb18-12"></a></span>
+<span id="cb18-13"><a href="results.html#cb18-13"></a>increase &lt;-<span class="st"> </span><span class="kw">full_join</span>(year2015, year2020, <span class="st">&quot;Tags&quot;</span>)  <span class="op">%&gt;%</span></span>
+<span id="cb18-14"><a href="results.html#cb18-14"></a><span class="st">  </span><span class="kw">group_by</span>(Tags) <span class="op">%&gt;%</span></span>
+<span id="cb18-15"><a href="results.html#cb18-15"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diff =</span> diff2020 <span class="op">-</span><span class="st"> </span>diff2015) <span class="op">%&gt;%</span></span>
+<span id="cb18-16"><a href="results.html#cb18-16"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">increased =</span> <span class="kw">ifelse</span>(diff <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb18-17"><a href="results.html#cb18-17"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags, increased)</span>
+<span id="cb18-18"><a href="results.html#cb18-18"></a></span>
+<span id="cb18-19"><a href="results.html#cb18-19"></a>df1_count_sub &lt;-<span class="st"> </span>df1_count <span class="op">%&gt;%</span></span>
+<span id="cb18-20"><a href="results.html#cb18-20"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">2015</span>,<span class="dv">2020</span>))</span>
+<span id="cb18-21"><a href="results.html#cb18-21"></a></span>
+<span id="cb18-22"><a href="results.html#cb18-22"></a>df1_count_sub &lt;-<span class="st"> </span><span class="kw">left_join</span>(df1_count_sub, increase, <span class="st">&quot;Tags&quot;</span>)</span>
+<span id="cb18-23"><a href="results.html#cb18-23"></a>highlight &lt;-<span class="st"> </span><span class="kw">filter</span>(df1_count_sub, increased <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb18-24"><a href="results.html#cb18-24"></a></span>
+<span id="cb18-25"><a href="results.html#cb18-25"></a></span>
+<span id="cb18-26"><a href="results.html#cb18-26"></a>df1_count_sub <span class="op">%&gt;%</span></span>
+<span id="cb18-27"><a href="results.html#cb18-27"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(TagCount, <span class="kw">fct_reorder</span>(Tags, TagCount))) <span class="op">+</span></span>
+<span id="cb18-28"><a href="results.html#cb18-28"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> year), <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb18-29"><a href="results.html#cb18-29"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> Tags), <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span></span>
+<span id="cb18-30"><a href="results.html#cb18-30"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data =</span> highlight, <span class="kw">aes</span>(<span class="dt">group =</span> Tags)) <span class="op">+</span></span>
+<span id="cb18-31"><a href="results.html#cb18-31"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">data =</span> highlight, <span class="kw">aes</span>(<span class="dt">color =</span> year)) <span class="op">+</span></span>
+<span id="cb18-32"><a href="results.html#cb18-32"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&#39;Tag Counts in 2015 vs 2020&#39;</span>) <span class="op">+</span></span>
+<span id="cb18-33"><a href="results.html#cb18-33"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Tag Count&#39;</span>) <span class="op">+</span></span>
+<span id="cb18-34"><a href="results.html#cb18-34"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;&#39;</span>) <span class="op">+</span></span>
+<span id="cb18-35"><a href="results.html#cb18-35"></a><span class="st">    </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Highlighted tags are the ones with an increase from 2015 to 2020.</p>
+<p>From year 2015 to 2020, we can see python has gained a substantially large amount of interest by users based on the number of tags, and it is the only tag that has an increase in the top 12 tags with the most tag counts. Over the past five years, it seems like python has become the most popular programming language users have interacted with on StackOverflow in comparing to other languages such as javascript, java, c#, c++, which all have a decrease in the tag counts.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="results.html#cb19-1"></a>languages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;c&quot;</span>,<span class="st">&quot;c#&quot;</span>,<span class="st">&quot;c++&quot;</span>,<span class="st">&quot;dart&quot;</span>,<span class="st">&quot;java&quot;</span>,<span class="st">&quot;javascript&quot;</span>,<span class="st">&quot;sql&quot;</span>,<span class="st">&quot;swift&quot;</span>)</span>
+<span id="cb19-2"><a href="results.html#cb19-2"></a>df1_count <span class="op">%&gt;%</span></span>
+<span id="cb19-3"><a href="results.html#cb19-3"></a><span class="st">  </span><span class="kw">filter</span>(Tags <span class="op">%in%</span><span class="st"> </span>languages) <span class="op">%&gt;%</span></span>
+<span id="cb19-4"><a href="results.html#cb19-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(TotalComments, <span class="kw">fct_reorder</span>(Tags, TotalComments))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb19-5"><a href="results.html#cb19-5"></a><span class="st">    </span><span class="kw">geom_density_ridges</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb19-6"><a href="results.html#cb19-6"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Total Comments by Tag&quot;</span>) <span class="op">+</span></span>
+<span id="cb19-7"><a href="results.html#cb19-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Programming Languages&quot;</span>) <span class="op">+</span></span>
+<span id="cb19-8"><a href="results.html#cb19-8"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Total Comments&quot;</span>) <span class="op">+</span></span>
+<span id="cb19-9"><a href="results.html#cb19-9"></a><span class="st">    </span><span class="kw">theme_classic</span>()</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>Based on the above Ridgeline plot, javascript, java, and c# seem to have the greatest variation in total comments from years 2015 to 2021.</p>
 
+</div>
 </div>
             </section>
 
@@ -138,7 +342,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/05-results.Rmd",
+"link": "https://github.com/kattywu/EDAV-Stackoverflow/edit/main/05-results.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -146,7 +350,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/05-results.Rmd",
+"link": "https://github.com/kattywu/EDAV-Stackoverflow/blob/main/05-results.Rmd",
 "text": null
 },
 "download": null,
