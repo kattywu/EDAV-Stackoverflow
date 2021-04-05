@@ -43,7 +43,7 @@ df1_count <- left_join(df1_count, initial_rank) %>%
 ```
 
 ```{r, fig.height=8, fig.width=20, message=FALSE, warning=FALSE}
-p <- ggpairs(df1_count %>% dplyr::select(year,TotalViews,TagCount,TotalComments, AcceptedAnswers,TotalAnswers), aes(color=year)) + 
+p <- ggpairs(df1_count %>% dplyr::select(year, TotalViews,TagCount,TotalComments, AcceptedAnswers,TotalAnswers), columns = 2:6, aes(color=year), title = "Interactions Between Continuous Variables") + 
   theme_bw() +
   theme_update(text = element_text(size=15))
 
@@ -59,7 +59,10 @@ for(i in 1:p$nrow) {
 
 p
 ```
+
 The variables TagCount, TotalComments, AcceptedAnswers, and TotalAnswers are all heavily correlated. To measure the success or popularity of each tag over time we are going to have to rely on one of these variables rather than a mixture of the four of them.
+
+Each of these four variables are also to a lesser extent positively correlated with the total views each tag receives. This may be due to minimal interactions to the post after the initial answers and comments come in. Logically it is unlikely that any one question has an infinite amount of answers, after a few reasonable answers are posted to a question there may be diminishing returns.  
 
 
 ```{r}
@@ -119,7 +122,7 @@ ggplot(df1_count,
   scale_x_discrete(expand = c(0, 0)) +
   scale_y_discrete(expand = c(0, 0)) +
   geom_flow(stat = "alluvium", lode.guidance = "frontback",
-            color = "darkgray", decreasing = TRUE) +
+            color = "darkgray") +
   geom_stratum(width = 3/7) +
   geom_text(stat = "alluvium", aes(label = after_stat(alluvium)), size=8) +
   theme(legend.position = "bottom", axis.text = element_text(size = 15, face = "bold")) +
