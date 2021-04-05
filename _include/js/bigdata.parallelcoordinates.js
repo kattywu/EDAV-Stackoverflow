@@ -7,7 +7,7 @@
                 .data(data)
                 .alpha(0.4)
                 .mode("queue")
-                .rate(5)
+                .rate(20)
                 .render()
                 .interactive()
                 .brushable()
@@ -88,6 +88,9 @@
 
     function zcolor(col, dimension) {
       var z = zscore(_(col).pluck(dimension).map(parseFloat));
+      if(dimension == "Tags"){
+        return color_scale(z(d["TagRank"]))
+      }
       return function(d) { return color_scale(z(d[dimension]))}
     };
 
