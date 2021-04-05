@@ -5,6 +5,7 @@ editor_options:
 ---
 
 # Data sources
+
 The data chosen for this project was a sample of posts from stackoverflow.com which is an online platform where people post questions about code and receive answers from the general public. The StackOverflow database is massive containing over 100 GB of information so for our purposes we will be taking a small sample from each year we are interested in. 
 
 The data is split into 7 files, one for every year from 2015 to 2021.
@@ -33,7 +34,7 @@ following variables;
 -   LastAcvtivityDate: The most recent date in which someone interacted
     with the post as of 3/25/21
 
--   Tags: A list of tags associated with the post sepearated by angle
+-   Tags: A list of tags associated with the post separated by angle
     brackets ("\<\>")
 
 -   AnswerCount: the number of answers each post has received
@@ -52,5 +53,4 @@ df_2018 <- read.csv("./data/2018.csv")
 df_2019 <- read.csv("./data/2019.csv")
 df_2020 <- read.csv("./data/2020.csv")
 df_2021 <- read.csv("./data/2021.csv")
-
 ```
