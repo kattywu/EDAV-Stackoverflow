@@ -1,4 +1,5 @@
 # Missing values
+
 Since our query did not include values without tags, the only missing values in our dataset are the missing values in AcceptedAnswerId as a result of the question not being answered. This problem is solved by the introduction of the indicator variable AcceptAnswer. Each post can only have one accepted answer so if we wish to determine if any other variables have an impact on the probability that a post will have an accepted answer we can use the proportion of posts that have answered posts to find our results.   
 
 That being said, not every tag we have listed in each year will appear in all the other years. Sampling random tags from our dataset proves unhelpful due to relatively low frequency of use of many of the tags within our sample.  
@@ -9,6 +10,7 @@ unique_tags <- df %>%
   group_by(year) %>%
   summarize(n_tags = length(unique(Tags)))
 ```
+
 ```{r, fig.height=11, fig.width=6}
 set.seed(0)
 df_tab <- sort(table(df$Tags), decreasing = T)
@@ -21,6 +23,7 @@ ggplot(newDF, aes(x=year, y=Tags, fill = ViewCount)) +
 ```
 
 Since we are not interested in all 29085 unique tags, it will suffice to analyze the top 50 most used unique tags for each year. This leaves us with 72 unique tags with which to analyze trends. 
+
 ```{r}
 df_tab <- sort(table(df %>% filter(year==2015) %>% dplyr::select(Tags)), decreasing = T)
 top_50_15 <- names(df_tab[1:50])
@@ -49,6 +52,7 @@ rm(top_50_21)
 
 df1 <- df[which((df$Tags %in% top_full)==TRUE),]
 ```
+
 ```{r, fig.height=9, fig.width=6}
 ggplot(df1, aes(x=year, y=Tags, fill = ViewCount)) +
   geom_tile() +
