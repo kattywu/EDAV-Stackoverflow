@@ -12,7 +12,7 @@ The data is split into 7 files, one for every year from 2015 to 2021.
 Each was queried from
 <https://data.stackexchange.com/stackoverflow/queries> using the query
 
-```{sql, eval = FALSE, include=TRUE}
+```{sql, eval = FALSE, include=TRUE, echo=TRUE}
 select Id, AcceptedAnswerId, CreationDate, LastActivityDate, Tags,
 AnswerCount, CommentCount, ViewCount, Title 
 from Posts where year(CreationDate) = YEAR 
