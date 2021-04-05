@@ -15,7 +15,7 @@
                 
 
 
-     change_color("TagRank");
+     change_color("Year");
 
       graph.svg
            .selectAll(".dimension")
