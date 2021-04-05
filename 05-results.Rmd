@@ -16,17 +16,21 @@ library(ggalluvial)
 library(gridExtra)
 library(RColorBrewer)
 library(ggridges)
+library(rcartocolor)
 ```
 
-## Top Tags over time
+## Correlation Between Variables
 
 
 
 ```{r, message=FALSE}
 df1_count <- df1 %>%
   group_by(year, Tags) %>%
-  summarise(TotalViews = sum(ViewCount), TagCount = length(Tags), TotalComments = sum(CommentCount), AcceptedAnswers = sum(as.integer(as.character(AcceptAnswer))), TotalAnswers = sum(AnswerCount)) %>%
-  mutate(TagRank = as.factor(order(TagCount,year,Tags, decreasing = T))) 
+  summarise(TotalViews = sum(ViewCount), TagCount = length(Tags), TotalComments = sum(CommentCount), AcceptedAnswers = sum(as.integer(as.character(AcceptAnswer))), TotalAnswers = sum(AnswerCount)) 
+
+df1_count <- df1_count %>%
+  group_by(year) %>%
+  mutate(TagRank = as.factor(rank(TagCount, ties.method = "first")))
 ```
 
 ```{r, message=FALSE}
@@ -54,8 +58,9 @@ for(i in 1:p$nrow) {
 }
 
 p
-#TagCount, TotalComments, AcceptedAnswers, and TotalAnswers are all heavily correlated. Only need to use one or two to monitor the popularity of tags over years 
 ```
+The variables TagCount, TotalComments, AcceptedAnswers, and TotalAnswers are all heavily correlated. To measure the success or popularity of each tag over time we are going to have to rely on one of these variables rather than a mixture of the four of them.
+
 
 ```{r}
 grid.arrange(
@@ -80,9 +85,9 @@ df1_count %>%
   theme_bw(),ncol=1)
 #It appears views accumulate over time, total popularity/usage of tag may have to be computed overall. Current usage of Tag not reflected in views. Answers accumulate over time to a lesser degree. AcceptedAnswers seem to be pretty stable but haven't had time to fully accumulate for past 2 years.
 ```
+It appears that views accumulate over time, this measure will not give us an accurate depiction of a tags popularity in any given year but may be telling of which tag is most popular overall. Answers and comments accumulate over time to a lesser degree and are also likely to give a skewed definition of yearly popularity. The number of accepted answers for each tag are a little more stable over time, though there is a slightly smaller amount of accepted answers in the past year which may be related to the amount of time a question is up before being answered and then having that answer marked as accepted.  
 
-
-
+## Relationship between Views and Answers
 ```{r}
 df1_count %>%
   group_by(Tags) %>%
@@ -99,12 +104,12 @@ For tags with less than 5,000 answers, as the total number of views per tag incr
 For tags that have more than 5,000 answers, the amount of views vary from lowest to greatest, suggesting little to no correlation between the number of views a tag in this group has and number of answers it has received.
 
 
-
+## Usage over Time
 
 
 ```{r, fig.height=25, fig.width=30}
 
-getPalette = colorRampPalette(brewer.pal(9, "BuGn"))
+getPalette = colorRampPalette(brewer.pal(9, "GnBu"))
 
 df1_count$Ranking<-cut(as.numeric(df1_count$TagRank), seq(0,75,5), right=FALSE)
 colourCount = length(unique(df1_count$Ranking))
@@ -112,7 +117,7 @@ colourCount = length(unique(df1_count$Ranking))
 ggplot(df1_count,
        aes(x = year, stratum = TagRank, alluvium = Tags,
            fill = InitialRank, label = Tags)) +
-  scale_fill_manual(values = rev(getPalette(colourCount))) +
+  scale_fill_manual(values = c("#6D5BAE", "#5F6EB5", "#4F7EBA", "#3F8DBD", "#329BBE", "#2FA7BE", "#38B2BE", "#49BCBC", "#5DC6BB", "#72CEB9", "#87D5B8", "#9BDCB8", "#AEE1B9", "#BFE5BA", "#CEE8BB")) +
   scale_x_discrete(expand = c(0, 0)) +
   scale_y_discrete(expand = c(0, 0)) +
   geom_flow(stat = "alluvium", lode.guidance = "frontback",
@@ -121,20 +126,22 @@ ggplot(df1_count,
   geom_text(stat = "alluvium", aes(label = after_stat(alluvium)), size=8) +
   theme(legend.position = "bottom", axis.text = element_text(size = 15, face = "bold")) +
   ggtitle("Frequency of Tags by Year") 
-#Tags being used in new posts change drastically in popularity over time. Some notable trends include; amazon-web-services staying in the same rank over several years, android maintained rank for 3 years from 2018 to 2020
 ```
 
-
+If tags are ordered by the frequency of occurrences in our sample per year, there is a clear difference in the usage of each tag. Not a single tag stays at a consistent ranking throughout the 7 years. However there are a few interesting trends:
+- amazon-web-services is the tag that was ranked the most consistently, it maintains the same rank from 2017-2021.
+- ajax and xcode are the next most consistent tags, maintaining their respective ranks from 2018-2021.
+- Our sample from 2016 does not contain any occurrences of the tag flutter and as a result is one element smaller
 
 
 
 ```{r,fig.height=10, fig.width=20}
-treemap(df1_count, index = c("year", "Tags"), vSize = "TagCount" )
-treemap(df1_count, index = c("year", "Tags"), vSize = "AcceptedAnswers" )
+treemap(df1_count, index = c("year", "Tags"), vSize = "TagCount", title = "Frequency of Tags")
+treemap(df1_count, index = c("year", "Tags"), vSize = "AcceptedAnswers", title = "Frequency of Accepted Answers" )
 #nearly identical but with notable differences; python and javascript always have a large proportion 
 ```
 
-
+These two treemaps while very similar, emphasize that the amount of accepted answers in 2021 (and 2020 to a lesser extent) is much smaller than would be expected from the overall number of tags recorded. Aside from that we see that the distribution of accepted answers for each tag and frequency of each tag is practically identical.  
 
 
 ```{r, fig.height=15}
