@@ -85,6 +85,7 @@
 				.style("font-weight", "normal")
 				.filter(function(d) { return d == dimension; })
 				.style("font-weight", "bold");
+		//add ordinal scale for categorical variable
     if(dimension=="Tags"){
       color_scale = d3.scale.ordinal()
       .range(["#a6cee3","#1f78b4","#b2df8a","#33a02c",
