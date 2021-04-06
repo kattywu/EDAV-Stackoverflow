@@ -1,6 +1,6 @@
-     body {
-    background-color: #26292E;
-    font-family: 'droid_sans', sans-serif;
+body {
+    background-color: #ffffff;
+    font-family: Verdana, sans-serif;
     font-size: 16px;
     font-weight: normal;
     line-height: 28px;
@@ -28,26 +28,7 @@ text {
 }
 
 
-#title {
-  font-size: 24px;
-  font-weight: 100;
-  color: black;
-}
-#title div.large, #title span.large {
-  font-size: 36px;
-}
 
-footer {
-  color: #666;
-}
-
-#desc {
-      position: relative;
-      float:right;
-      z-index:-999;
-      left: 380px;
-      width: 400px;
-      }
 
 button {
     background: none repeat scroll 0 0 #55aab5;

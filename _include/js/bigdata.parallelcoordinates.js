@@ -32,7 +32,7 @@
             "mouseout": graph.unhighlight
           });
 
-      graph.on("brush", function(d) {
+      graph.on("brush", function(d){
         d3.select("#grid")
           .datum(d.slice(0,10))
           .call(grid)
@@ -74,36 +74,36 @@
       
 
     var color_scale = d3.scale.linear()
-                        .domain([-2,-0.5,0.5,2])
-                        .range(["#DE5E60", "steelblue", "steelblue", "#98df8a"])
+                        .range(['#ddaa33', '#bb5566', '#004488'])
                         .interpolate(d3.interpolateLab);
 
-    function change_color(dimension) {
-      graph.svg.selectAll(".dimension")
-        .style("font-weight", "normal")
-        .filter(function(d) { return d == dimension; })
-        .style("font-weight", "bold")
 
-      graph.color(zcolor(graph.data(),dimension)).render()
+    
+    	function change_color(dimension) {
+		// change the fonts to bold
+		graph.svg.selectAll(".dimension")
+				.style("font-weight", "normal")
+				.filter(function(d) { return d == dimension; })
+				.style("font-weight", "bold");
+    if(dimension=="Tags"){
+      color_scale = d3.scale.ordinal()
+      .range(["#a6cee3","#1f78b4","#b2df8a","#33a02c",
+            "#fb9a99","#e31a1c","#fdbf6f","#ff7f00",
+            "#cab2d6","#6a3d9a","#ffff99","#b15928"]);
+    }else{
+      color_scale = d3.scale.linear()
+                        .range(['#ddaa33', '#bb5566', '#004488'])
+                        .interpolate(d3.interpolateLab);
     }
+		// change color of lines
+		// set domain of color scale
+		var values = graph.data().map(function(d){return parseFloat(d[dimension])});
+		color_scale.domain([d3.min(values),d3.mean(values), d3.max(values)]);
 
-    function zcolor(col, dimension) {
-      var z = zscore(_(col).pluck(dimension).map(parseFloat));
-      if(dimension == "Tags"){
-        return color_scale(z(d["TagRank"]))
-      }
-      return function(d) { return color_scale(z(d[dimension]))}
-    };
+		// change colors for each line
+		graph.color(function(d){return color_scale([d[dimension]])}).render();
+	};
 
-    function zscore(col) {
-      var n = col.length,
-      mean = _(col).mean(),
-      sigma = _(col).stdDeviation();
-
-      return function(d) {
-        return (d-mean)/sigma;
-      };
-    };
     
     function callUpdate(data) {
              graph.data(data).brush().render().updateAxes();
