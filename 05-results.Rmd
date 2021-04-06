@@ -64,6 +64,8 @@ The variables TagCount, TotalComments, AcceptedAnswers, and TotalAnswers are all
 
 Each of these four variables are also to a lesser extent positively correlated with the total views each tag receives. This may be due to minimal interactions to the post after the initial answers and comments come in. Logically it is unlikely that any one question has an infinite amount of answers, after a few reasonable answers are posted to a question there may be diminishing returns.  
 
+The distribution for all of these variables are skewed right with long tails implying that we may have some outliers.  
+
 
 ```{r}
 grid.arrange(
@@ -86,8 +88,9 @@ df1_count %>%
   geom_bar(position = "dodge", stat = "identity") +
   scale_fill_manual("legend", values = c("TotalViews" = "#E69F00")) +
   theme_bw(),ncol=1)
-#It appears views accumulate over time, total popularity/usage of tag may have to be computed overall. Current usage of Tag not reflected in views. Answers accumulate over time to a lesser degree. AcceptedAnswers seem to be pretty stable but haven't had time to fully accumulate for past 2 years.
+
 ```
+
 It appears that views accumulate over time, this measure will not give us an accurate depiction of a tags popularity in any given year but may be telling of which tag is most popular overall. Answers and comments accumulate over time to a lesser degree and are also likely to give a skewed definition of yearly popularity. The number of accepted answers for each tag are a little more stable over time, though there is a slightly smaller amount of accepted answers in the past year which may be related to the amount of time a question is up before being answered and then having that answer marked as accepted.  
 
 ## Relationship between Views and Answers
@@ -130,8 +133,22 @@ ggplot(df1_count,
 
 ```
 
-If tags are ordered by the frequency of occurrences in our sample per year, there is a clear difference in the usage of each tag. 
+This alluvial plot reveals some pretty interesting information about the trends in the usage of different tags over time and confirms the theory that the frequency of usage for each tag is not constant.
 
+Some noteworthy trends here include;
+
+-   Java and Javascript remain in the top five most used tags every year.
+-   Python surpassed Javascript as the top rank in 2018 and has maintained this position.
+-   2016 contains one less rank due to the fact that no instances of the tag Flutter were in our sample for that year.
+-   reactjs, node.js, pandas, and flutter have been consistently increasing in rank since 2015.
+-   Usage of angular seems to have peaked in 2018 and now appears to be on a steady decline.
+-   Usage of dart appears to have dipped a little in 2016 but has been consistently rising since.
+-   As python-3.x rose in usage, python-2.7 decreased in usage which is to be expected.
+-   Tags seems to increase or decrease in usage slowly over time rather than jump rapidly in usage, however there are a few larger than expected jumps in popularity such as angular between 2016 and 2017, and flutter between 2018 and 2019.
+-   usage of angular appears to replace usage of angularjs between 2016 and 2017,as such angularjs is the only tag that ranked in the top 15 in 2015 and bottom 5 in 2021. angularjs is the only Tag to drop more than 30 ranks within one year.
+
+
+## Porportion of Usage
 
 ```{r,fig.height=10, fig.width=20}
 treemap(df1_count, index = c("year", "Tags"), vSize = "TagCount", title = "Frequency of Tags")
@@ -140,7 +157,10 @@ treemap(df1_count, index = c("year", "Tags"), vSize = "AcceptedAnswers", title =
 ```
 
 These two treemaps while very similar, emphasize that the amount of accepted answers in 2021 (and 2020 to a lesser extent) is much smaller than would be expected from the overall number of tags recorded. Aside from that we see that the distribution of accepted answers for each tag and frequency of each tag is practically identical.  
+These figures really draw attention to the large proportion of the usage of python, Javascript, and java. These three tags always maintain their position in the top 5 most used tags and are proportionally used more than twice as much as tags that are between the fifth and tenth most used.
 
+
+## Rate of Change in Usage
 
 ```{r, fig.height=15}
 year2015 <- df1_count %>%
@@ -186,18 +206,44 @@ Highlighted tags are the ones with an increase from 2015 to 2020.
 From year 2015 to 2020, we can see python has gained a substantially large amount of interest by users based on the number of tags, and it is the only tag that has an increase in the top 12 tags with the most tag counts. Over the past five years, it seems like python has become the most popular programming language users have interacted with on StackOverflow in comparing to other languages such as javascript, java, c#, c++, which all have a decrease in the tag counts.
 
 
+## Distribution of Interaction for top 8 popular Tags
 
-
-```{r, message=FALSE}
+```{r, message=FALSE, fig.width=10, fig.height=5}
 languages <- c("c","c#","c++","dart","java","javascript","sql","swift")
+grid.arrange(
 df1_count %>%
   filter(Tags %in% languages) %>%
-  ggplot(aes(TotalComments, fct_reorder(Tags, TotalComments))) + 
+  ggplot(aes(TotalComments, fct_reorder(Tags, TotalComments), fill = Tags)) + 
+    scale_fill_manual(values = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84')) +
     geom_density_ridges() + 
     ggtitle("Total Comments by Tag") +
     ylab("Programming Languages") +
     xlab("Total Comments") +
-    theme_classic()
+    theme_classic() + 
+    theme(legend.position = "none"),
+
+df1_count %>%
+  filter(Tags %in% languages) %>%
+  ggplot(aes(TotalViews, fct_reorder(Tags, TotalViews), fill = Tags)) + 
+    scale_fill_manual(values = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84')) +
+    geom_density_ridges() + 
+    ggtitle("Total Views by Tag") +
+    ylab("Programming Languages") +
+    xlab("Total Views") +
+    theme_classic() + 
+    theme(legend.position = "none"),
+
+df1_count %>%
+  filter(Tags %in% languages) %>%
+  ggplot(aes(TotalAnswers, fct_reorder(Tags, TotalAnswers), fill = Tags)) + 
+    scale_fill_manual(values = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84')) +
+    geom_density_ridges() + 
+    ggtitle("Total Answers by Tag") +
+    ylab("Programming Languages") +
+    xlab("Total Answers") +
+    theme_classic() + 
+    theme(legend.position = "none"),ncol=3)
+
 ```
 
 Based on the above Ridgeline plot, javascript, java, and c# seem to have the greatest variation in total comments from years 2015 to 2021.
