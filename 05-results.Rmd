@@ -93,31 +93,35 @@ df1_count %>%
 
 It appears that views accumulate over time, this measure will not give us an accurate depiction of a tags popularity in any given year but may be telling of which tag is most popular overall. Answers and comments accumulate over time to a lesser degree and are also likely to give a skewed definition of yearly popularity. The number of accepted answers for each tag are a little more stable over time, though there is a slightly smaller amount of accepted answers in the past year which may be related to the amount of time a question is up before being answered and then having that answer marked as accepted.  
 
+
+
 ## Relationship between Views and Answers
+
 ```{r}
 df1_count %>%
   group_by(Tags) %>%
-  ggplot(aes(TotalViews, TotalAnswers)) +
-  geom_hex() + 
+  mutate(totalviews = TotalViews/1000000) %>%
+  ggplot(aes(totalviews, TotalAnswers)) +
+  geom_hex(bins = 30) + 
   ggtitle("Total Views vs Total Answers") +
-  xlab("Total Views") + 
+  xlab("Total Views (in millions)") + 
   ylab("Total Answers")
 ```
 
 
-For tags with less than 5,000 answers, as the total number of views per tag increases, the total number of answers provided tend to increase as well, with an exception of a tag having about 5 million views but less than 1250 answers, which may be an outlier tag. This suggests that the more view a tag has, the more answers it is likely to have. Also, many of the tags have relatively low views and few answers. 
+For tags with less than 2,500 answers, majority of the tags have similar total answers regardless of their total number of views, with two tags having high total views but average number of total answers, which might be outlier tags in this group. This may imply little to no correlation on the total answers and total views, so a tag having high views does not necessarily guarantee it will receive answers in proportional to its views.
 
-For tags that have more than 5,000 answers, the amount of views vary from lowest to greatest, suggesting little to no correlation between the number of views a tag in this group has and number of answers it has received.
+
+For tags that have answers in between 2,500 and 5,000 total answers, as the total number of views per tag increases, the total number of answers tend to increase as well. This suggests that the more views a tag in this group has, the more answers it is likely to receive. 
+
+
+For tags that have more than 5,000 answers, the amount of views vary from the lowest to the greatest (10 million), suggesting little to no correlation between the number of views a tag in this group has and number of answers it has received. Some tags with less than 1 million views received more than 5000 answers, while some other tags in this group have more than 10 million views but received about the same amount of answers.
 
 
 ## Usage over Time
 
 
 ```{r, fig.height=25, fig.width=30}
-
-
-
-  
 ggplot(df1_count,
        aes(x = year, stratum = TagRank, alluvium = Tags,
            fill = InitialRank, label = Tags)) +
@@ -135,7 +139,7 @@ ggplot(df1_count,
 
 This alluvial plot reveals some pretty interesting information about the trends in the usage of different tags over time and confirms the theory that the frequency of usage for each tag is not constant.
 
-Some noteworthy trends here include;
+Some noteworthy trends here include:
 
 -   Java and Javascript remain in the top five most used tags every year.
 -   Python surpassed Javascript as the top rank in 2018 and has maintained this position.
@@ -206,7 +210,7 @@ Highlighted tags are the ones with an increase from 2015 to 2020.
 From year 2015 to 2020, we can see python has gained a substantially large amount of interest by users based on the number of tags, and it is the only tag that has an increase in the top 12 tags with the most tag counts. Over the past five years, it seems like python has become the most popular programming language users have interacted with on StackOverflow in comparing to other languages such as javascript, java, c#, c++, which all have a decrease in the tag counts.
 
 
-## Distribution of Interaction for top 8 popular Tags
+## Distribution of Interaction for 8 Programming Languages Tags
 
 ```{r, message=FALSE, fig.width=10, fig.height=5}
 languages <- c("c","c#","c++","dart","java","javascript","sql","swift")
@@ -246,4 +250,18 @@ df1_count %>%
 
 ```
 
-Based on the above Ridgeline plot, javascript, java, and c# seem to have the greatest variation in total comments from years 2015 to 2021.
+Based on the above Ridgeline plots, javascript, java, and c# seem to have the greatest variation in total comments, total views, and total answers across all years. They all appear to have more than one mode (peak of usage) in all three categories, unlike the other programming language tags which have only one peak, these three have 
+
+
+## Programming Languanges Tags by Year
+
+```{r}
+df1_count %>%
+  filter(Tags %in% languages) %>%
+  ggplot(aes(TotalAnswers, color = year, fill = year)) +
+    geom_density(alpha = 0.2) +
+    scale_color_manual(values = rev(c("#6D5BAE", "#5F6EB5", "#4F7EBA", "#3F8DBD", "#329BBE", "#2FA7BE", "#38B2BE"))) +
+    ggtitle("Total Answers by Year") +
+    xlab("Total Amount of Answers Received")
+```
+
