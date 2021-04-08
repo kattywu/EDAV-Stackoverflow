@@ -1,11 +1,12 @@
-   var graph;
-    var dataset;
+var graph;
+var dataset;
     
     d3.csv("https://raw.githubusercontent.com/kattywu/EDAV-Stackoverflow/main/_include/data/df.csv?token=ASRDPN3XKH3QNQEFSV67JK3AORLTI", function(data) {
     dataset = data;
       graph = d3.parcoords()('#wrapper')
                 .data(data)
-                .alpha(0.4)
+                .alpha(0.3)
+                .margin({ top: 24, left: 75, bottom: 12, right: 0 })
                 .mode("queue")
                 .rate(20)
                 .render()
@@ -13,8 +14,8 @@
                 .brushable()
                 .reorderable()
                 
-
-
+                
+    //Set starting color to year
      change_color("Year");
 
       graph.svg
@@ -44,33 +45,34 @@
       });
   });
   
-       // Remove all but selected from the dataset
+       // Remove everything not selected
       d3.select("#keep-data")
         .on("click", function() {
           new_data = graph.brushed();
           if (new_data.length == 0) {
-            alert("Please do not select all the data when keeping/excluding");
+            alert("Please do not remove all the data");
             return false;
           }
-          callUpdate(new_data);
+          UpdateGraph(new_data);
         });
     
-      // Exclude selected from the dataset
-      d3.select("#exclude-data")
+      // Remove selected from the dataset
+      d3.select("#remove-data")
         .on("click", function() {
           new_data = _.difference(dataset, graph.brushed());
           if (new_data.length == 0) {
-            alert("Please do not select all the data when keeping/excluding");
+            alert("Please do not remove all the data");
             return false;
           }
-          callUpdate(new_data);
+          UpdateGraph(new_data);
         });
         
-      
+      // Start over
       d3.select("#reset-data")
          .on("click", function() {
-               callUpdate(dataset);
+               UpdateGraph(dataset);
          });
+         
       
 
     var color_scale = d3.scale.linear()
@@ -96,7 +98,6 @@
                         .range(['#ddaa33', '#bb5566', '#004488'])
                         .interpolate(d3.interpolateLab);
     }
-		// change color of lines
 		// set domain of color scale
 		var values = graph.data().map(function(d){return parseFloat(d[dimension])});
 		color_scale.domain([d3.min(values),d3.mean(values), d3.max(values)]);
@@ -106,7 +107,9 @@
 	};
 
     
-    function callUpdate(data) {
+    function UpdateGraph(data) {
              graph.data(data).brush().render().updateAxes();
              
     }
+    
+      

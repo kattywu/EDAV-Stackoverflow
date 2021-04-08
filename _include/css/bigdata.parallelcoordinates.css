@@ -1,7 +1,7 @@
 body {
     background-color: #ffffff;
     font-family: Verdana, sans-serif;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: normal;
     line-height: 28px;
     width:100%;
@@ -13,18 +13,13 @@ text {
 
 
 
-.group:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 /* Document styling */
 
 #wrapper {
    position: relative;
    float: left;
    top: 20px;
+   padding: 10px;
 }
 
 
@@ -38,7 +33,7 @@ button {
     font-size: 14px;
     font-weight: 500;
     margin-top: 30px;
-    padding: 5px 40px;
+    padding: 10px 40px;
     text-align: center;
     transition: background 0.1s linear 0s, color 0.1s linear 0s;
     vertical-align: middle;
