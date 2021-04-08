@@ -71,7 +71,9 @@ The variables TagCount, TotalComments, AcceptedAnswers, and TotalAnswers are all
 
 Each of these four variables are also to a lesser extent positively correlated with the total views each tag receives. This may be due to minimal interactions to the post after the initial answers and comments come in. Logically it is unlikely that any one question has an infinite amount of answers, after a few reasonable answers are posted to a question there may be diminishing returns.  
 
-The distribution for all of these variables are skewed right with long tails implying that we may have some outliers.  
+The distribution for all of these variables are skewed right with long tails implying that we may have some outliers.
+
+It is important to note that the correlations between these variables appear to differ by year. The total amount of views is more correlated with every other variable in 2021 than any other year. The correlation of our variables within years is higher than the overall correlation for the entire time period. This is particularly true of the correlations between views and the other variables but it can be noted that the overall correlation is lower than the correlation calculated by year for every combination of year and variables except for the correlation between total answers and total comments for the years 2018,2019, and 2021. This may be an indication that our data has a tendency to change slowly over multiple year rather than quickly over one or two years. 
 
 
 ```{r}
@@ -100,6 +102,7 @@ df1_count %>%
 
 It appears that views accumulate over time, this measure will not give us an accurate depiction of a tags popularity in any given year but may be telling of which tag is most popular overall. Answers and comments accumulate over time to a lesser degree and are also likely to give a skewed definition of yearly popularity. The number of accepted answers for each tag are a little more stable over time, though there is a slightly smaller amount of accepted answers in the past year which may be related to the amount of time a question is up before being answered and then having that answer marked as accepted.  
 
+Interestingly enough the only variable here to increase from one year to the next is the total number of comments from 2016 to 2017. This coincides with the maximum number of comments a tag received in a year which was javascript in 2017 with 15100 comments. There could be an event in 2017 that caused an increase in comments that we have not controlled for like an influx in the overall usage of coding languages or a shift in the amount of people interested in coding. 
 
 
 ## Relationship between Views and Answers
