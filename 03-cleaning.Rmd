@@ -16,10 +16,10 @@ df <- full_join(df_2015, df_2016, by = c("Id", "AcceptedAnswerId", "CreationDate
   full_join(df_2021, by = c("Id", "AcceptedAnswerId", "CreationDate", "LastActivityDate", "Tags", "AnswerCount", "CommentCount", "ViewCount", "Title"))
 ```
 
-Now, there are three things that need to changed in our data before it can be used for this analysis;
+Then, there are three things that need to changed in our data before it can be used for this analysis;
 
--   The Tags need to be separated so that we can compare the usage of each tag individually
--   We need to create a new variable to indicate whether or not there was an accepted answer based off of whether or not we were supplied an AcceptedAnswerId which we will refer to as AcceptAnswer
+-   The Tags need to be separated so that we can compare the usage of each tag individually.
+-   We need to create a new indicator variable to classify whether or not there was an accepted answer. This variable will be reffered to as AcceptAnswer, for entries with an accepted answer ID we will set this value to one and set it to zero otherwise.
 -   Convert AcceptAnswer, Tags and Id into factors, and convert CreationDate and LastActivityDate into dates
 
 ```{r, include=FALSE}
@@ -42,7 +42,7 @@ df <- df %>%
 ```
 
 
-For our purposes we can omit title since we already have the post Id as a source of identification and we can omit AcceptedAnswerId because we only need the frequency of accepted answers which we have identified in AcceptAnswer.
+For our purposes we can omit the post titles since we already have the post Id as a source of identification. AcceptedAnswerId can also be omitted because we only need the frequency of accepted answers which we have identified in AcceptAnswer.
 
 ```{r, include=FALSE}
 df <- df %>%

@@ -21,7 +21,14 @@ library(rcartocolor)
 
 ## Correlation Between Variables
 
+For ease in graphing we will declare our variables as:
 
+-   Year: The year in which the tagged posts were created
+-   TagCount: The sum of all occurrences of a tag in our sample per year
+-   TotalViews: The sum of all view counts for posts the tag appears in per year
+-   TotalComments: The sum of all comments of the tagged posts per year
+-   AcceptedAnswers: The number of posts that were marked as accepted for a given tag per year
+-   TotalAnswers: The sum of all answers for tagged posts per year
 
 ```{r, message=FALSE}
 df1_count <- df1 %>%
