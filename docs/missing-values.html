@@ -24,7 +24,7 @@
 <meta name="author" content="Emily Jennings-Dobbs and Yingyao Wu" />
 
 
-<meta name="date" content="2021-04-04" />
+<meta name="date" content="2021-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,10 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="libs/parallel-coordinates-2.1.8/parcoords.css" rel="stylesheet" />
-<script src="libs/parcoords-binding-1.0.0/parcoords.js"></script>
-<script src="libs/d3-5.16.0/d3.min.js"></script>
 
 
 <style type="text/css">
@@ -143,9 +139,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
-<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#top-tags-over-time"><i class="fa fa-check"></i><b>5.1</b> Top Tags over time</a></li>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#correlation-between-variables"><i class="fa fa-check"></i><b>5.1</b> Correlation Between Variables</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#relationship-between-views-and-answers"><i class="fa fa-check"></i><b>5.2</b> Relationship between Views and Answers</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#usage-over-time"><i class="fa fa-check"></i><b>5.3</b> Usage over Time</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#porportion-of-usage"><i class="fa fa-check"></i><b>5.4</b> Porportion of Usage</a></li>
+<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#rate-of-change-in-usage"><i class="fa fa-check"></i><b>5.5</b> Rate of Change in Usage</a></li>
+<li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#distribution-of-interaction-for-9-programming-languages-tags"><i class="fa fa-check"></i><b>5.6</b> Distribution of Interaction for 9 Programming Languages Tags</a></li>
+<li class="chapter" data-level="5.7" data-path="results.html"><a href="results.html#programming-languange-tags-by-year"><i class="fa fa-check"></i><b>5.7</b> Programming Languange Tags by Year</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a><ul>
+<li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#parallel-coordinates-plot"><i class="fa fa-check"></i><b>6.1</b> Parallel Coordinates Plot</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -170,50 +174,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
 <p>Since our query did not include values without tags, the only missing values in our dataset are the missing values in AcceptedAnswerId as a result of the question not being answered. This problem is solved by the introduction of the indicator variable AcceptAnswer. Each post can only have one accepted answer so if we wish to determine if any other variables have an impact on the probability that a post will have an accepted answer we can use the proportion of posts that have answered posts to find our results.</p>
 <p>That being said, not every tag we have listed in each year will appear in all the other years. Sampling random tags from our dataset proves unhelpful due to relatively low frequency of use of many of the tags within our sample.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="missing-values.html#cb2-1"></a>df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.factor</span>(<span class="kw">year</span>(CreationDate)))</span>
-<span id="cb2-2"><a href="missing-values.html#cb2-2"></a>unique_tags &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb2-3"><a href="missing-values.html#cb2-3"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
-<span id="cb2-4"><a href="missing-values.html#cb2-4"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_tags =</span> <span class="kw">length</span>(<span class="kw">unique</span>(Tags)))</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="missing-values.html#cb3-1"></a><span class="kw">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb3-2"><a href="missing-values.html#cb3-2"></a>df_tab &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">table</span>(df<span class="op">$</span>Tags), <span class="dt">decreasing =</span> T)</span>
-<span id="cb3-3"><a href="missing-values.html#cb3-3"></a>sample_<span class="dv">100</span> &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">names</span>(df_tab),<span class="dv">100</span>)</span>
-<span id="cb3-4"><a href="missing-values.html#cb3-4"></a></span>
-<span id="cb3-5"><a href="missing-values.html#cb3-5"></a>newDF&lt;-<span class="st"> </span>df[<span class="kw">which</span>((df<span class="op">$</span>Tags <span class="op">%in%</span><span class="st"> </span>sample_<span class="dv">100</span>)<span class="op">==</span><span class="ot">TRUE</span>),]</span>
-<span id="cb3-6"><a href="missing-values.html#cb3-6"></a><span class="kw">ggplot</span>(newDF, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>Tags, <span class="dt">fill =</span> ViewCount)) <span class="op">+</span></span>
-<span id="cb3-7"><a href="missing-values.html#cb3-7"></a><span class="st">  </span><span class="kw">geom_tile</span>() <span class="op">+</span></span>
-<span id="cb3-8"><a href="missing-values.html#cb3-8"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;100 Random Tags&quot;</span>)</span></code></pre></div>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
 <p>Since we are not interested in all 29085 unique tags, it will suffice to analyze the top 50 most used unique tags for each year. This leaves us with 72 unique tags with which to analyze trends.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="missing-values.html#cb4-1"></a>df_tab &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">table</span>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2015</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags)), <span class="dt">decreasing =</span> T)</span>
-<span id="cb4-2"><a href="missing-values.html#cb4-2"></a>top_<span class="dv">50</span>_<span class="dv">15</span> &lt;-<span class="st"> </span><span class="kw">names</span>(df_tab[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>])</span>
-<span id="cb4-3"><a href="missing-values.html#cb4-3"></a>df_tab &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">table</span>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2016</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags)), <span class="dt">decreasing =</span> T)</span>
-<span id="cb4-4"><a href="missing-values.html#cb4-4"></a>top_<span class="dv">50</span>_<span class="dv">16</span> &lt;-<span class="st"> </span><span class="kw">names</span>(df_tab[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>])</span>
-<span id="cb4-5"><a href="missing-values.html#cb4-5"></a>df_tab &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">table</span>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2017</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags)), <span class="dt">decreasing =</span> T)</span>
-<span id="cb4-6"><a href="missing-values.html#cb4-6"></a>top_<span class="dv">50</span>_<span class="dv">17</span> &lt;-<span class="st"> </span><span class="kw">names</span>(df_tab[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>])</span>
-<span id="cb4-7"><a href="missing-values.html#cb4-7"></a>df_tab &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">table</span>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2018</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags)), <span class="dt">decreasing =</span> T)</span>
-<span id="cb4-8"><a href="missing-values.html#cb4-8"></a>top_<span class="dv">50</span>_<span class="dv">18</span> &lt;-<span class="st"> </span><span class="kw">names</span>(df_tab[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>])</span>
-<span id="cb4-9"><a href="missing-values.html#cb4-9"></a>df_tab &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">table</span>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2019</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags)), <span class="dt">decreasing =</span> T)</span>
-<span id="cb4-10"><a href="missing-values.html#cb4-10"></a>top_<span class="dv">50</span>_<span class="dv">19</span> &lt;-<span class="st"> </span><span class="kw">names</span>(df_tab[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>])</span>
-<span id="cb4-11"><a href="missing-values.html#cb4-11"></a>df_tab &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">table</span>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2020</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags)), <span class="dt">decreasing =</span> T)</span>
-<span id="cb4-12"><a href="missing-values.html#cb4-12"></a>top_<span class="dv">50</span>_<span class="dv">20</span> &lt;-<span class="st"> </span><span class="kw">names</span>(df_tab[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>])</span>
-<span id="cb4-13"><a href="missing-values.html#cb4-13"></a>df_tab &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">table</span>(df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2021</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Tags)), <span class="dt">decreasing =</span> T)</span>
-<span id="cb4-14"><a href="missing-values.html#cb4-14"></a>top_<span class="dv">50</span>_<span class="dv">21</span> &lt;-<span class="st"> </span><span class="kw">names</span>(df_tab[<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>])</span>
-<span id="cb4-15"><a href="missing-values.html#cb4-15"></a></span>
-<span id="cb4-16"><a href="missing-values.html#cb4-16"></a>top_full &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">c</span>(top_<span class="dv">50</span>_<span class="dv">15</span>, top_<span class="dv">50</span>_<span class="dv">16</span>, top_<span class="dv">50</span>_<span class="dv">17</span>, top_<span class="dv">50</span>_<span class="dv">18</span>, top_<span class="dv">50</span>_<span class="dv">19</span>, top_<span class="dv">50</span>_<span class="dv">20</span>, top_<span class="dv">50</span>_<span class="dv">21</span>))</span>
-<span id="cb4-17"><a href="missing-values.html#cb4-17"></a></span>
-<span id="cb4-18"><a href="missing-values.html#cb4-18"></a><span class="kw">rm</span>(top_<span class="dv">50</span>_<span class="dv">15</span>)</span>
-<span id="cb4-19"><a href="missing-values.html#cb4-19"></a><span class="kw">rm</span>(top_<span class="dv">50</span>_<span class="dv">16</span>)</span>
-<span id="cb4-20"><a href="missing-values.html#cb4-20"></a><span class="kw">rm</span>(top_<span class="dv">50</span>_<span class="dv">17</span>)</span>
-<span id="cb4-21"><a href="missing-values.html#cb4-21"></a><span class="kw">rm</span>(top_<span class="dv">50</span>_<span class="dv">18</span>)</span>
-<span id="cb4-22"><a href="missing-values.html#cb4-22"></a><span class="kw">rm</span>(top_<span class="dv">50</span>_<span class="dv">19</span>)</span>
-<span id="cb4-23"><a href="missing-values.html#cb4-23"></a><span class="kw">rm</span>(top_<span class="dv">50</span>_<span class="dv">20</span>)</span>
-<span id="cb4-24"><a href="missing-values.html#cb4-24"></a><span class="kw">rm</span>(top_<span class="dv">50</span>_<span class="dv">21</span>)</span>
-<span id="cb4-25"><a href="missing-values.html#cb4-25"></a></span>
-<span id="cb4-26"><a href="missing-values.html#cb4-26"></a>df1 &lt;-<span class="st"> </span>df[<span class="kw">which</span>((df<span class="op">$</span>Tags <span class="op">%in%</span><span class="st"> </span>top_full)<span class="op">==</span><span class="ot">TRUE</span>),]</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="missing-values.html#cb5-1"></a><span class="kw">ggplot</span>(df1, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>Tags, <span class="dt">fill =</span> ViewCount)) <span class="op">+</span></span>
-<span id="cb5-2"><a href="missing-values.html#cb5-2"></a><span class="st">  </span><span class="kw">geom_tile</span>() <span class="op">+</span></span>
-<span id="cb5-3"><a href="missing-values.html#cb5-3"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;50 Most Used Tags from Each Year &quot;</span>)</span></code></pre></div>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-14-1.png" width="576" /></p>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-13-1.png" width="1152" /></p>
 <p>There is still have one tag (flutter), which isn’t used in all 7 years, however there should be enough data on the usage of these tags to compare them between the years.</p>
 
 </div>

@@ -7,4 +7,6 @@ site: bookdown::bookdown_site
 
 # Introduction
 
-As one of the biggest platforms for 
+As one of the biggest platforms for professional and enthusiastic programmers to communicate and interact with each other, StackOverflow allows users to ask and answer questions based on tags. In our project we are interested in learning patterns and trends in popular tags, and focus on analyzing the relationships between several summary statistics of those tags.
+
+Questions we would like to answer through our study:

@@ -176,48 +176,77 @@ These figures really draw attention to the large proportion of the usage of pyth
 
 ## Rate of Change in Usage
 
-```{r, fig.height=15}
-year2015 <- df1_count %>%
-  group_by(Tags) %>%
-  filter(year == 2020) %>%
-  mutate(diff2015 = TagCount) %>%
-  dplyr::select(Tags, diff2015, TagCount)
+```{r}
+# function to create a sub dataset for plotting
+ sub = function(year1, year2){
+   y1 <- df1_count %>%
+     group_by(Tags) %>%
+     filter(year == year1) %>%
+     mutate(diff1 = TagCount) %>%
+     dplyr::select(Tags, diff1, TagCount)
+   
+   y2 <- df1_count %>%
+     group_by(Tags) %>%
+     filter(year == year2) %>%
+     mutate(diff2 = TagCount) %>%
+     dplyr::select(Tags, diff2, TagCount)
+   
+   increase <- full_join(y1, y2, "Tags")  %>%
+     group_by(Tags) %>%
+     mutate(diff = diff2 - diff1) %>%
+     mutate(increased = ifelse(diff > 0, 1, 0)) %>%
+     dplyr::select(Tags, increased)
+   
+   df1_count_sub <- df1_count %>%
+   filter(year %in% c(year1,year2))
 
-year2020 <- df1_count %>%
-  group_by(Tags) %>%
-  filter(year == 2015) %>%
-  mutate(diff2020 = TagCount) %>%
-  dplyr::select(Tags, diff2020, TagCount)
+   df1_count_sub <- left_join(df1_count_sub, increase, "Tags")
+   return(df1_count_sub)
+ }
+ # function for highlighting tags with increasing values
+ hightlight_tags <- function(df){
+   highlight <- filter(df, increased == 1)
+   return(highlight)
+ }
+```
+ 
+ 
+```{r}
+ # titles for each plot
+ titles = c('Tag Counts in 2015 vs 2016', 'Tag Counts in 2016 vs 2017', 'Tag Counts in 2017 vs 2018',
+            'Tag Counts in 2018 vs 2019', 'Tag Counts in 2019 vs 2020', 'Tag Counts in 2020 vs 2021')
+ years = seq(2015, 2021, 1)
 
-increase <- full_join(year2015, year2020, "Tags")  %>%
-  group_by(Tags) %>%
-  mutate(diff = diff2020 - diff2015) %>%
-  mutate(increased = ifelse(diff > 0, 1, 0)) %>%
-  dplyr::select(Tags, increased)
+ # cleveland dot plots
+ for (i in 1:(length(years)-1)){
+   # subset only two consecutive years for comparison
+   df1_count_sub = sub(years[i],years[i+1])
+   highlight = hightlight_tags(df1_count_sub)
 
-df1_count_sub <- df1_count %>%
-  filter(year %in% c(2015,2020))
-
-df1_count_sub <- left_join(df1_count_sub, increase, "Tags")
-highlight <- filter(df1_count_sub, increased == 0)
-
-
-df1_count_sub %>%
-  ggplot(aes(TagCount, fct_reorder(Tags, TagCount))) +
-    geom_point(aes(color = year), alpha = 0.3) +
-    geom_line(aes(group = Tags), alpha = 0.3) +
-    geom_line(data = highlight, aes(group = Tags)) +
-    geom_point(data = highlight, aes(color = year)) +
-    ggtitle('Tag Counts in 2015 vs 2020') +
-    xlab('Tag Count') +
-    ylab('') +
-    theme_bw()
+   curr.plot = df1_count_sub %>%
+     ggplot(aes(TagCount, fct_reorder(Tags, TagCount))) +
+       geom_point(aes(color = year), alpha = 0.4) +
+       geom_line(aes(group = Tags), alpha = 0.4) +
+       geom_line(data = highlight, aes(group = Tags)) +
+       geom_point(data = highlight, aes(color = year)) +
+       ggtitle(titles[i]) +
+       xlab('Tag Count') +
+       ylab('') +
+       theme_bw()
+   print(curr.plot)
+ }
 ```
 
 
-Highlighted tags are the ones with an increase from 2015 to 2020.
+Highlighted tags are the ones with an increase between any two consecutive years.
 
-From year 2015 to 2020, we can see python has gained a substantially large amount of interest by users based on the number of tags, and it is the only tag that has an increase in the top 12 tags with the most tag counts. Over the past five years, it seems like python has become the most popular programming language users have interacted with on StackOverflow in comparing to other languages such as javascript, java, c#, c++, which all have a decrease in the tag counts.
+The changes (both increase and decrease in the number of tag counts) for the tags from year 2015 to 2016 have the least variation in magnitude in comparing to the other 5 cleveland dot plots, while in the plots of 2016 vs. 2017 and 2017 vs. 2018, the changes of magnitude appear to be the greatest among the 6 comparison plots.
+
+Focusing on the changes for specific tags, we may notice that `python` gains popularity since 2015 and is ranked first place in the number of tag counts ever since 2018. Especially in 2018 vs. 2019 when the majority of the tags have relatively small changes in tag counts, `python` has increased substantially and by the end of 2019 exceeds the tag ranked second place (`javascript`) a great amount of tag counts.
+
+From year 2016 to 2018, `javascript` loses tag counts and at the same time was outrun by `python`, to this date it has remained as the second most popular programming language tags.
+
+Surprisingly, even though data for 2021 has only the length of three months, it has greater changes in the magnitude of tag counts for many of the tags in comparing to a full year of data for 2020.
 
 
 ## Distribution of Interaction for 9 Programming Languages Tags
@@ -266,9 +295,9 @@ df1_count %>%
 
 ```
 
-Based on the above Ridgeline plots, javascript, python, java, and c# seem to have the greatest variation in total comments, total views, and total answers across all years. They all appear to have more than one mode (peak of usage) in all three categories, unlike the other five programming language tags which have only one peak, the variations in the distributions of these three tags suggest questions might not be uniquely grouped or clustered together. In other words, we cannot easily infer the most common amount of comments/views/answers given only any of these three tags.
+Based on the above Ridgeline plots, `javascript`, `python`, `java`, and `c#` seem to have the greatest variation in total comments, total views, and total answers across all years. They all appear to have more than one mode (peak of usage) in all three categories, unlike the other five programming language tags which have only one peak, the variations in the distributions of these three tags suggest questions might not be uniquely grouped or clustered together. In other words, we cannot easily infer the most common amount of comments/views/answers given only any of these three tags.
 
- Also, taking into account that each group is represented by a unique color, we can observe that java, c#, and dart have the same rank across each of the total comments/views/answers category, while the other tags are ranked differently based on the category For example, the rank of dart has remained consistent across three categories and is the programming language tag that has the lowest usage, i.e. the tag with the least user interactions in StackOverflow.
+Also, taking into account that each group is represented by a unique color, we can observe that `java`, `c#`, and `dart` have the same rank across each of the total comments/views/answers category, while the other tags are ranked differently based on the category For example, the rank of `dart` has remained consistent across three categories and is the programming language tag that has the lowest usage, i.e. the tag with the least user interactions in StackOverflow.
 
 
 ## Programming Languange Tags by Year

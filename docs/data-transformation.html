@@ -24,7 +24,7 @@
 <meta name="author" content="Emily Jennings-Dobbs and Yingyao Wu" />
 
 
-<meta name="date" content="2021-04-04" />
+<meta name="date" content="2021-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,10 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<link href="libs/parallel-coordinates-2.1.8/parcoords.css" rel="stylesheet" />
-<script src="libs/parcoords-binding-1.0.0/parcoords.js"></script>
-<script src="libs/d3-5.16.0/d3.min.js"></script>
 
 
 <style type="text/css">
@@ -143,9 +139,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
-<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#top-tags-over-time"><i class="fa fa-check"></i><b>5.1</b> Top Tags over time</a></li>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#correlation-between-variables"><i class="fa fa-check"></i><b>5.1</b> Correlation Between Variables</a></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#relationship-between-views-and-answers"><i class="fa fa-check"></i><b>5.2</b> Relationship between Views and Answers</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#usage-over-time"><i class="fa fa-check"></i><b>5.3</b> Usage over Time</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#porportion-of-usage"><i class="fa fa-check"></i><b>5.4</b> Porportion of Usage</a></li>
+<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#rate-of-change-in-usage"><i class="fa fa-check"></i><b>5.5</b> Rate of Change in Usage</a></li>
+<li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#distribution-of-interaction-for-9-programming-languages-tags"><i class="fa fa-check"></i><b>5.6</b> Distribution of Interaction for 9 Programming Languages Tags</a></li>
+<li class="chapter" data-level="5.7" data-path="results.html"><a href="results.html#programming-languange-tags-by-year"><i class="fa fa-check"></i><b>5.7</b> Programming Languange Tags by Year</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a><ul>
+<li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#parallel-coordinates-plot"><i class="fa fa-check"></i><b>6.1</b> Parallel Coordinates Plot</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -169,13 +173,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-transformation" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
 <p>The initial step in cleaning the data was to combine the 7 data frames each containing 50,000 observations into one data frame containing 300,000 observations.</p>
-<p>Now, there are three things that need to changed in our data before it can be used for this analysis;</p>
+<p>Then, there are three things that need to changed in our data before it can be used for this analysis;</p>
 <ul>
-<li>The Tags need to be separated so that we can compare the usage of each tag individually</li>
-<li>We need to create a new variable to indicate whether or not there was an accepted answer based off of whether or not we were supplied an AcceptedAnswerId which we will refer to as AcceptAnswer</li>
+<li>The Tags need to be separated so that we can compare the usage of each tag individually.</li>
+<li>We need to create a new indicator variable to classify whether or not there was an accepted answer. This variable will be reffered to as AcceptAnswer, for entries with an accepted answer ID we will set this value to one and set it to zero otherwise.</li>
 <li>Convert AcceptAnswer, Tags and Id into factors, and convert CreationDate and LastActivityDate into dates</li>
 </ul>
-<p>For our purposes we can omit title since we already have the post Id as a source of identification and we can omit AcceptedAnswerId because we only need the frequency of accepted answers which we have identified in AcceptAnswer.</p>
+<p>For our purposes we can omit the post titles since we already have the post Id as a source of identification. AcceptedAnswerId can also be omitted because we only need the frequency of accepted answers which we have identified in AcceptAnswer.</p>
 
 </div>
             </section>
