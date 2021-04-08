@@ -3,6 +3,13 @@ data-sources
 data-transformation
 missing-values
 results
-top-tags-over-time
+correlation-between-variables
+relationship-between-views-and-answers
+usage-over-time
+porportion-of-usage
+rate-of-change-in-usage
+distribution-of-interaction-for-9-programming-language-tags
+programming-languange-tags-by-year
 interactive-component
+parallel-coordinates-plot
 conclusion

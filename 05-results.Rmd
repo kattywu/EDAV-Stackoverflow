@@ -210,16 +210,19 @@ Highlighted tags are the ones with an increase from 2015 to 2020.
 From year 2015 to 2020, we can see python has gained a substantially large amount of interest by users based on the number of tags, and it is the only tag that has an increase in the top 12 tags with the most tag counts. Over the past five years, it seems like python has become the most popular programming language users have interacted with on StackOverflow in comparing to other languages such as javascript, java, c#, c++, which all have a decrease in the tag counts.
 
 
-## Distribution of Interaction for 8 Programming Languages Tags
+## Distribution of Interaction for 9 Programming Language Tags
+
+Consider tags that are types of programming languages, we are interested in learning their distributions and the amount of interactions they received in each summary category. Often, questions being asked are related to the specific type of programming language; by selecting and analyzing tags of programming languages, we will be able to see the trends and differences in these tags/topics.
 
 ```{r, message=FALSE, fig.width=10, fig.height=5}
-languages <- c("c","c#","c++","dart","java","javascript","sql","swift")
+languages <- c("c","c#","c++","dart","java","javascript","sql","swift","python")
 grid.arrange(
 df1_count %>%
   filter(Tags %in% languages) %>%
   ggplot(aes(TotalComments, fct_reorder(Tags, TotalComments), fill = Tags)) + 
-    scale_fill_manual(values = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84')) +
-    geom_density_ridges() + 
+    #scale_fill_manual(values = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84',"#5DC6BB")) +
+    scale_fill_brewer(palette = "Set3") +
+    geom_density_ridges(alpha = 0.8) + 
     ggtitle("Total Comments by Tag") +
     ylab("Programming Languages") +
     xlab("Total Comments") +
@@ -228,20 +231,23 @@ df1_count %>%
 
 df1_count %>%
   filter(Tags %in% languages) %>%
-  ggplot(aes(TotalViews, fct_reorder(Tags, TotalViews), fill = Tags)) + 
-    scale_fill_manual(values = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84')) +
-    geom_density_ridges() + 
+  mutate(totalviews = TotalViews/1000000) %>%
+  ggplot(aes(totalviews, fct_reorder(Tags, totalviews), fill = Tags)) + 
+    #scale_fill_manual(values = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84',"#5DC6BB")) +
+    scale_fill_brewer(palette = "Set3") +
+    geom_density_ridges(alpha = 0.8) + 
     ggtitle("Total Views by Tag") +
     ylab("Programming Languages") +
-    xlab("Total Views") +
+    xlab("Total Views (in millions)") +
     theme_classic() + 
     theme(legend.position = "none"),
 
 df1_count %>%
   filter(Tags %in% languages) %>%
   ggplot(aes(TotalAnswers, fct_reorder(Tags, TotalAnswers), fill = Tags)) + 
-    scale_fill_manual(values = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84')) +
-    geom_density_ridges() + 
+    #scale_fill_manual(values = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#0c2c84',"#5DC6BB")) +
+    scale_fill_brewer(palette = "Set3") +
+    geom_density_ridges(alpha = 0.8) + 
     ggtitle("Total Answers by Tag") +
     ylab("Programming Languages") +
     xlab("Total Answers") +
@@ -250,10 +256,12 @@ df1_count %>%
 
 ```
 
-Based on the above Ridgeline plots, javascript, java, and c# seem to have the greatest variation in total comments, total views, and total answers across all years. They all appear to have more than one mode (peak of usage) in all three categories, unlike the other programming language tags which have only one peak, these three have 
+Based on the above Ridgeline plots, javascript, python, java, and c# seem to have the greatest variation in total comments, total views, and total answers across all years. They all appear to have more than one mode (peak of usage) in all three categories, unlike the other five programming language tags which have only one peak, the variations in the distributions of these three tags suggest questions might not be uniquely grouped or clustered together. In other words, we cannot easily infer the most common amount of comments/views/answers given only any of these three tags.
+
+Also, taking into account that each group is represented by a unique color, we can observe that java, c#, and dart have the same rank across each of the total comments/views/answers category, while the other tags are ranked differently based on the category For example, the rank of dart has remained consistent across three categories and is the programming language tag that has the lowest usage, i.e. the tag with the least user interactions in StackOverflow.
 
 
-## Programming Languanges Tags by Year
+## Programming Languange Tags by Year
 
 ```{r}
 df1_count %>%
@@ -261,7 +269,9 @@ df1_count %>%
   ggplot(aes(TotalAnswers, color = year, fill = year)) +
     geom_density(alpha = 0.2) +
     scale_color_manual(values = rev(c("#6D5BAE", "#5F6EB5", "#4F7EBA", "#3F8DBD", "#329BBE", "#2FA7BE", "#38B2BE"))) +
+    #scale_fill_brewer(palette = "Dark2") +
     ggtitle("Total Answers by Year") +
-    xlab("Total Amount of Answers Received")
+    xlab("Total Answers")
 ```
 
+As shown in the histograms `Sum of Variables by Year` in section 1, tags in year 2021 has the least amount of usage in all of the total views, comments, answers, and accepted answers categories. However, if we take a closer look at the programming language tags as defined in the previous section, we will notice from the above density plots that around 6750 total answers there exists a local maximum for year 2021, which means year 2021 actually receives a decent amount of total answers for number of answers around 6000, despite it being the year with the least user interactions so far. So those 9 programming language tags have comparatively similar total answers in year 2021 as the previous years for high amount of total answers, or even to a greater extent if scaled proportional to the duration of the posts.

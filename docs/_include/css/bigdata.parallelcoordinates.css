@@ -1,10 +1,10 @@
-     body {
-    background-color: #26292E;
-    font-family: 'droid_sans', sans-serif;
+body {
+    background-color: #ffffff;
+    font-family: Verdana, sans-serif;
     font-size: 16px;
     font-weight: normal;
     line-height: 28px;
-    width:2024px;
+    width:100%;
 }
 
 text {
@@ -28,29 +28,10 @@ text {
 }
 
 
-#title {
-  font-size: 24px;
-  font-weight: 100;
-  color: black;
-}
-#title div.large, #title span.large {
-  font-size: 36px;
-}
 
-footer {
-  color: #666;
-}
-
-#desc {
-      position: relative;
-      float:right;
-      z-index:-999;
-      left: 380px;
-      width: 400px;
-      }
 
 button {
-    background: none repeat scroll 0 0 #3C3F45;
+    background: none repeat scroll 0 0 #55aab5;
     color: #23262C;
     cursor: pointer;
     display: inline-block;
@@ -73,10 +54,10 @@ button:hover {
 
 /* data table styles */
 #grid { height: 198px; color:black; clear: both; position:relative; top: 60px; left: 15px }
-.row, .header { clear: left; font-size: 14px; line-height: 18px; height: 20px; margin: 5px; width:1120px }
+.row, .header { clear: left; font-size: 14px; line-height: 18px; height: 20px; margin: 5px; width:1520px }
 .row:hover {text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;}
 .row:nth-child(odd) { background: rgba(0,0,0,0.05); }
 .header { font-weight: bold; }
-.cell { float: left; overflow: hidden; white-space: nowrap; width: 120px; height: 22px; }
+.cell { float: left; overflow: hidden; white-space: nowrap; width: 150px; height: 22px; }
 .col-0 { width: 280px; }
 
