@@ -13,8 +13,6 @@ text {
 
 
 
-/* Document styling */
-
 #wrapper {
    position: relative;
    float: left;
@@ -47,10 +45,10 @@ button:hover {
 }
 
 
-/* data table styles */
+/* data table */
 #grid { height: 198px; color:black; clear: both; position:relative; top: 60px; left: 15px }
 .row, .header { clear: left; font-size: 14px; line-height: 18px; height: 20px; margin: 5px; width:1520px }
-.row:hover {text-shadow: -1px 1px 8px #ffc, 1px -1px 8px #fff;}
+.row:hover {text-shadow: -1px 1px 8px #FEB40C, 1px -1px 8px #FFFFFF;}
 .row:nth-child(odd) { background: rgba(0,0,0,0.05); }
 .header { font-weight: bold; }
 .cell { float: left; overflow: hidden; white-space: nowrap; width: 150px; height: 22px; }
