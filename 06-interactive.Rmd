@@ -30,13 +30,13 @@ Code for plot adapted from <a href="https://syntagmatic.github.io/parallel-coord
 </div>
 
 
-<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="https://underscorejs.org/underscore-min.js"></script>
-<script src="./_include/js/lib/d3.parcoords.js"></script>
-<script src="./_include/js/lib/d3.underscore.math.js"></script>
-<script src="https://raw.githubusercontent.com/kattywu/EDAV-Stackoverflow/main/_include/js/lib/d3.divgrid.js?token=ASRDPN5MZ7QL66K35MQZUKLAPDD4C"></script>
-<link href="./_include/css/d3.parcoords.css" rel="stylesheet">
-<link href="./_include/css/bigdata.parallelcoordinates.css" rel="stylesheet">
+<script src="/EDAV-Stackoverflow/_include/js/lib//d3.v3.min.js" charset="utf-8"></script>
+<script src="/EDAV-Stackoverflow/_include/js/lib/underscore-min.js"></script>
+<script src="/EDAV-Stackoverflow/_include/js/lib/d3.parcoords.js"></script>
+<script src="/EDAV-Stackoverflow/_include/js/lib/d3.underscore.math.js"></script>
+<script src="/EDAV-Stackoverflow/_include/js/lib//d3.divgrid.js"></script>
+<link href="/EDAV-Stackoverflow/_include/css/d3.parcoords.css" rel="stylesheet">
+<link href="/EDAV-Stackoverflow/_include/css/bigdata.parallelcoordinates.css" rel="stylesheet">
 <button id="keep-data">Keep</button>
 <button id="remove-data">Remove</button>
 <button id="reset-data">Reset</button>
@@ -44,7 +44,7 @@ Code for plot adapted from <a href="https://syntagmatic.github.io/parallel-coord
 <div id="wrapper" class="parcoords" style="width:100%;height:825px">
 </div>
 <div id="grid"></div>
-<script type="text/javascript" src="./_include/js/bigdata.parallelcoordinates.js"></script>
+<script type="text/javascript" src="/EDAV-Stackoverflow/_include/js/bigdata.parallelcoordinates.js"></script>
 
 
 
