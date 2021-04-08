@@ -8,7 +8,7 @@
             padding: 10px; 
             border: 1px solid lightgray; 
             margin: 10px;">
-Key:
+<b>Key:</b>
 <br>
 - Click axis label to change color, drag axis label to reorder
 <br>
