@@ -18,7 +18,7 @@ Key:
 <br>
 - Press "Remove" to remove selected entries from plot 
 <br>
-- Press "Reset" to remove all changes made from "keep" and "Exclude"
+- Press "Reset" to remove all changes made from "Keep" and "Remove"
 <br>
 - Hover over entry in grid below plot to highlight entry
 </div>
@@ -28,7 +28,7 @@ Key:
 Code for plot adapted from <a href="https://syntagmatic.github.io/parallel-coordinates/" target="_blank">Parallel Coordinates Examples</a>
 </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="http://underscorejs.org/underscore-min.js"></script>
 <script src="_include/js/lib/d3.parcoords.js"></script>
