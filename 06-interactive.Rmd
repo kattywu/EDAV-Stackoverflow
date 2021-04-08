@@ -2,7 +2,7 @@
 
 
 ## Parallel Coordinates Plot
-<base href="https://github.com/kattywu/EDAV-Stackoverflow">
+
 
 <div style="background: ghostwhite; 
             font-size:14px; 
