@@ -30,11 +30,11 @@ Code for plot adapted from <a href="https://syntagmatic.github.io/parallel-coord
 </div>
 
 
-<script src="./_include/js/lib/d3.v3.min.js" charset="utf-8"></script>
-<script src="./_include/js/lib/underscore-min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://underscorejs.org/underscore-min.js"></script>
 <script src="./_include/js/lib/d3.parcoords.js"></script>
 <script src="./_include/js/lib/d3.underscore.math.js"></script>
-<script src="./_include/js/lib/d3.divgrid.js"></script>
+<script src="https://raw.githubusercontent.com/kattywu/EDAV-Stackoverflow/main/_include/js/lib/d3.divgrid.js?token=ASRDPN5MZ7QL66K35MQZUKLAPDD4C"></script>
 <link href="./_include/css/d3.parcoords.css" rel="stylesheet">
 <link href="./_include/css/bigdata.parallelcoordinates.css" rel="stylesheet">
 <button id="keep-data">Keep</button>
