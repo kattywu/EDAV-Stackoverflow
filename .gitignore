@@ -1,4 +1,3 @@
-echo "
 # don't push local rendered files in master branch
 _book/
 _bookdown_files/
@@ -11,4 +10,4 @@ libs/
 .Rproj.user
 .Rhistory
 .RData
-.Ruserdata" > .gitignore
+.Ruserdata
