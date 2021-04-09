@@ -33,7 +33,6 @@
   
 <link rel="prev" href="missing-values.html"/>
 <link rel="next" href="interactive-component.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,20 +50,22 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,8 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
-<ul>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#correlation-between-variables"><i class="fa fa-check"></i><b>5.1</b> Correlation Between Variables</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#relationship-between-views-and-answers"><i class="fa fa-check"></i><b>5.2</b> Relationship between Views and Answers</a></li>
 <li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#usage-over-time"><i class="fa fa-check"></i><b>5.3</b> Usage over Time</a></li>
@@ -147,8 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#distribution-of-interaction-for-9-programming-languages-tags"><i class="fa fa-check"></i><b>5.6</b> Distribution of Interaction for 9 Programming Languages Tags</a></li>
 <li class="chapter" data-level="5.7" data-path="results.html"><a href="results.html#programming-languange-tags-by-year"><i class="fa fa-check"></i><b>5.7</b> Programming Languange Tags by Year</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a>
-<ul>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a><ul>
 <li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#parallel-coordinates-plot"><i class="fa fa-check"></i><b>6.1</b> Parallel Coordinates Plot</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -171,9 +170,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="results" class="section level1" number="5">
+<div id="results" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
-<div id="correlation-between-variables" class="section level2" number="5.1">
+<div id="correlation-between-variables" class="section level2">
 <h2><span class="header-section-number">5.1</span> Correlation Between Variables</h2>
 <p>For ease in graphing we will declare our variables as:</p>
 <ul>
@@ -193,14 +192,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It appears that views accumulate over time, this measure will not give us an accurate depiction of a tags popularity in any given year but may be telling of which tag is most popular overall. Answers and comments accumulate over time to a lesser degree and are also likely to give a skewed definition of yearly popularity. The number of accepted answers for each tag are a little more stable over time, though there is a slightly smaller amount of accepted answers in the past year which may be related to the amount of time a question is up before being answered and then having that answer marked as accepted.</p>
 <p>Interestingly enough the only variable here to increase from one year to the next is the total number of comments from 2016 to 2017. This coincides with the maximum number of comments a tag received in a year which was javascript in 2017 with 15100 comments. There could be an event in 2017 that caused an increase in comments that we have not controlled for like an influx in the overall usage of coding languages or a shift in the amount of people interested in coding.</p>
 </div>
-<div id="relationship-between-views-and-answers" class="section level2" number="5.2">
+<div id="relationship-between-views-and-answers" class="section level2">
 <h2><span class="header-section-number">5.2</span> Relationship between Views and Answers</h2>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>For tags with less than 2,500 answers, majority of the tags have similar total answers regardless of their total number of views, with two tags having high total views but average number of total answers, which might be outlier tags in this group. This may imply little to no correlation on the total answers and total views, so a tag having high views does not necessarily guarantee it will receive answers in proportional to its views.</p>
 <p>For tags that have answers in between 2,500 and 5,000 total answers, as the total number of views per tag increases, the total number of answers tend to increase as well. This suggests that the more views a tag in this group has, the more answers it is likely to receive.</p>
 <p>For tags that have more than 5,000 answers, the amount of views vary from the lowest to the greatest (10 million), suggesting little to no correlation between the number of views a tag in this group has and number of answers it has received. Some tags with less than 1 million views received more than 5000 answers, while some other tags in this group have more than 10 million views but received about the same amount of answers.</p>
 </div>
-<div id="usage-over-time" class="section level2" number="5.3">
+<div id="usage-over-time" class="section level2">
 <h2><span class="header-section-number">5.3</span> Usage over Time</h2>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-21-1.png" width="2880" /></p>
 <p>This alluvial plot reveals some pretty interesting information about the trends in the usage of different tags over time and confirms the theory that the frequency of usage for each tag is not constant.</p>
@@ -217,13 +216,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>usage of angular appears to replace usage of angularjs between 2016 and 2017,as such angularjs is the only tag that ranked in the top 15 in 2015 and bottom 5 in 2021. angularjs is the only Tag to drop more than 30 ranks within one year.</li>
 </ul>
 </div>
-<div id="porportion-of-usage" class="section level2" number="5.4">
+<div id="porportion-of-usage" class="section level2">
 <h2><span class="header-section-number">5.4</span> Porportion of Usage</h2>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-22-1.png" width="1920" /><img src="finalproj_files/figure-html/unnamed-chunk-22-2.png" width="1920" /></p>
 <p>These two treemaps while very similar, emphasize that the amount of accepted answers in 2021 (and 2020 to a lesser extent) is much smaller than would be expected from the overall number of tags recorded. Aside from that we see that the distribution of accepted answers for each tag and frequency of each tag is practically identical.<br />
 These figures really draw attention to the large proportion of the usage of python, Javascript, and java. These three tags always maintain their position in the top 5 most used tags and are proportionally used more than twice as much as tags that are between the fifth and tenth most used.</p>
 </div>
-<div id="rate-of-change-in-usage" class="section level2" number="5.5">
+<div id="rate-of-change-in-usage" class="section level2">
 <h2><span class="header-section-number">5.5</span> Rate of Change in Usage</h2>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-24-2.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-24-3.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-24-4.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-24-5.png" width="672" /><img src="finalproj_files/figure-html/unnamed-chunk-24-6.png" width="672" /></p>
 <p>Highlighted tags are the ones with an increase between any two consecutive years.</p>
@@ -232,14 +231,14 @@ These figures really draw attention to the large proportion of the usage of pyth
 <p>From year 2016 to 2018, <code>javascript</code> loses tag counts and at the same time was outrun by <code>python</code>, to this date it has remained as the second most popular programming language tags.</p>
 <p>Surprisingly, even though data for 2021 has only the length of three months, it has greater changes in the magnitude of tag counts for many of the tags in comparing to a full year of data for 2020.</p>
 </div>
-<div id="distribution-of-interaction-for-9-programming-languages-tags" class="section level2" number="5.6">
+<div id="distribution-of-interaction-for-9-programming-languages-tags" class="section level2">
 <h2><span class="header-section-number">5.6</span> Distribution of Interaction for 9 Programming Languages Tags</h2>
 <p>Consider tags that are types of programming languages, we are interested in learning their distributions and the amount of interactions they received in each summary category. Often, questions being asked are related to the specific type of programming language; by selecting and analyzing tags of programming languages, we will be able to see the trends and differences in these tags/topics.</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-25-1.png" width="960" /></p>
 <p>Based on the above Ridgeline plots, <code>javascript</code>, <code>python</code>, <code>java</code>, and <code>c#</code> seem to have the greatest variation in total comments, total views, and total answers across all years. They all appear to have more than one mode (peak of usage) in all three categories, unlike the other five programming language tags which have only one peak, the variations in the distributions of these three tags suggest questions might not be uniquely grouped or clustered together. In other words, we cannot easily infer the most common amount of comments/views/answers given only any of these three tags.</p>
 <p>Also, taking into account that each group is represented by a unique color, we can observe that <code>java</code>, <code>c#</code>, and <code>dart</code> have the same rank across each of the total comments/views/answers category, while the other tags are ranked differently based on the category For example, the rank of <code>dart</code> has remained consistent across three categories and is the programming language tag that has the lowest usage, i.e. the tag with the least user interactions in StackOverflow.</p>
 </div>
-<div id="programming-languange-tags-by-year" class="section level2" number="5.7">
+<div id="programming-languange-tags-by-year" class="section level2">
 <h2><span class="header-section-number">5.7</span> Programming Languange Tags by Year</h2>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>As shown in the histograms <code>Sum of Variables by Year</code> in section 1, tags in year 2021 has the least amount of usage in all of the total views, comments, answers, and accepted answers categories. However, if we take a closer look at the programming language tags as defined in the previous section, we will notice from the above density plots that around 6750 total answers there exists a local maximum for year 2021, which means year 2021 actually receives a decent amount of total answers for number of answers around 6000, despite it being the year with the least user interactions so far. So those 9 programming language tags have comparatively similar total answers in year 2021 as the previous years for high amount of total answers, or even to a greater extent if scaled proportional to the duration of the posts.</p>
