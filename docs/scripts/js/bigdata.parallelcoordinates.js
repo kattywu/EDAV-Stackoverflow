@@ -1,7 +1,7 @@
 var graph;
 var dataset;
     
-    d3.csv("https://raw.githubusercontent.com/kattywu/EDAV-Stackoverflow/main/_include/data/df.csv?token=ASRDPN3XKH3QNQEFSV67JK3AORLTI", function(data) {
+    d3.csv("https://raw.githubusercontent.com/kattywu/EDAV-Stackoverflow/main/scripts/data/df.csv", function(data) {
     dataset = data;
       graph = d3.parcoords()('#wrapper')
                 .data(data)
