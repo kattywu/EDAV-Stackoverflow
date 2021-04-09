@@ -1,0 +1,50 @@
+# Interactive component
+
+
+## Parallel Coordinates Plot
+
+
+<div style="background: ghostwhite; 
+            font-size:14px; 
+            padding: 10px; 
+            border: 1px solid lightgray; 
+            margin: 10px;">
+<b>Key:</b>
+<br>
+- Click axis label to change color, drag axis label to reorder
+<br>
+- Click and drag to select multiple entries
+<br>
+- Press "Keep" to remove all unselected entries from plot
+<br>
+- Press "Remove" to remove selected entries from plot 
+<br>
+- Press "Reset" to remove all changes made from "Keep" and "Remove"
+<br>
+- Hover over entry in grid below plot to highlight entry
+</div>
+
+
+<div style="text-align: right; font-size: 85%; font-style: italic;"> <!-- text-align needs to be in parent -->
+Code for plot adapted from <a href="https://syntagmatic.github.io/parallel-coordinates/" target="_blank">Parallel Coordinates Examples</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://underscorejs.org/underscore-min.js"></script>
+<script src="_include/js/lib/d3.parcoords.js"></script>
+<script src="_include/js/lib/d3.underscore.math.js"></script>
+<script src="_include/js/lib//d3.divgrid.js"></script>
+<link href="_include/css/d3.parcoords.css" rel="stylesheet">
+<link href="_include/css/bigdata.parallelcoordinates.css" rel="stylesheet">
+<button id="keep-data">Keep</button>
+<button id="remove-data">Remove</button>
+<button id="reset-data">Reset</button>
+<br>
+<div id="wrapper" class="parcoords" style="width:100%;height:825px">
+</div>
+<div id="grid"></div>
+<script type="text/javascript" src="_include/js/bigdata.parallelcoordinates.js"></script>
+
+
+
