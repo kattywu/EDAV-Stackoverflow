@@ -30,6 +30,7 @@ Code for plot adapted from <a href="https://syntagmatic.github.io/parallel-coord
 </div>
 
 
+
 <script src="/EDAV-Stackoverflow/_include/js/lib//d3.v3.min.js" charset="utf-8"></script>
 <script src="/EDAV-Stackoverflow/_include/js/lib/underscore-min.js"></script>
 <script src="/EDAV-Stackoverflow/_include/js/lib/d3.parcoords.js"></script>
@@ -45,6 +46,5 @@ Code for plot adapted from <a href="https://syntagmatic.github.io/parallel-coord
 </div>
 <div id="grid"></div>
 <script type="text/javascript" src="/EDAV-Stackoverflow/_include/js/bigdata.parallelcoordinates.js"></script>
-
 
 
