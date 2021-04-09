@@ -7,7 +7,7 @@ site: bookdown::bookdown_site
 
 # Introduction
 
-As one of the biggest platforms for professional and enthusiastic programmers to communicate and interact with each other, StackOverflow allows users to ask and answer questions based on topics and programming languages. In our project we are interested in learning patterns and trends in popular topics, while focusing on analyzing the relationships between several summary statistics within each topic.
+As one of the biggest platforms for professional and enthusiastic programmers to communicate and interact with each other online, StackOverflow allows users to ask and answer questions based on topics regarding programming languages. In our project we are interested in learning if there are any evident patterns and trends in the change of popular topics, while focusing on analyzing the relationships between several summary statistics within each topic.
 
 Questions we would like to answer through our study:
 
@@ -17,4 +17,4 @@ Questions we would like to answer through our study:
 
 3. How does user behavior change from year to year, specifically concerning groups of similar topics? 
 
-4. What are some inference we can make given information on topic or year?
+4. What are some inferences we can make given information on topic or year?
