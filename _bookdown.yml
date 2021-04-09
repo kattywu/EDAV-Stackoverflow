@@ -2,7 +2,7 @@ book_filename: "finalproj"
 output_dir: docs
 delete_merged_file: true
 edit: https://kattywu.github.io/EDAV-Stackoverflow/edit/main/%s
-view: https://kattywu.github.io/EDAV-Stackoverflow/EDAV-Stackoverflow/blob/main/%s
+view: https://kattywu.github.io/EDAV-Stackoverflow/blob/main/%s
 language:
   ui:
     chapter_name: "Chapter "

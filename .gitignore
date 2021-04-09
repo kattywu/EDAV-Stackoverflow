@@ -1,4 +1,10 @@
-.Rproj.user
+.DS_Store
 .Rhistory
 .RData
-.Ruserdata
+.Rproj.user
+ondeckcode/
+webshot.png
+docs/
+_bookdown_files/
+_book/
+temp.html
