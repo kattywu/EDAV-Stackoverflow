@@ -7,6 +7,14 @@ site: bookdown::bookdown_site
 
 # Introduction
 
-As one of the biggest platforms for professional and enthusiastic programmers to communicate and interact with each other, StackOverflow allows users to ask and answer questions based on tags. In our project we are interested in learning patterns and trends in popular tags, and focus on analyzing the relationships between several summary statistics of those tags.
+As one of the biggest platforms for professional and enthusiastic programmers to communicate and interact with each other, StackOverflow allows users to ask and answer questions based on topics and programming languages. In our project we are interested in learning patterns and trends in popular topics, while focusing on analyzing the relationships between several summary statistics within each topic.
 
 Questions we would like to answer through our study:
+
+1. What are the most popular topics being discussed for the past 6 years, and are there any trends in the usage of those topics?
+
+2. If we look into a specif topic, how does it change across years in terms of popularity ranking, amount of interactions between users, and relationships with related topics?
+
+3. How does user behavior change from year to year, specifically concerning groups of similar topics? 
+
+4. What are some inference we can make given information on topic or year?
