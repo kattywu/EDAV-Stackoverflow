@@ -1,3 +1,73 @@
+--- 
+title: "Stack Overflow Tags Over Time"
+author: "Emily Jennings-Dobbs and Yingyao Wu"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+---
+--- 
+title: "Stack Overflow Tags Over Time"
+author: "Emily Jennings-Dobbs and Yingyao Wu"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+---
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+# Introduction
+
+As one of the biggest platforms for professional and enthusiastic programmers to communicate and interact with each other, StackOverflow allows users to ask and answer questions based on topics and programming languages. In our project we are interested in learning patterns and trends in popular topics, while focusing on analyzing the relationships between several summary statistics within each topic.
+
+Questions we would like to answer through our study:
+
+1. What are the most popular topics being discussed for the past 6 years, and are there any trends in the usage of those topics?
+
+2. If we look into a specif topic, how does it change across years in terms of popularity ranking, amount of interactions between users, and relationships with related topics?
+
+3. How does user behavior change from year to year, specifically concerning groups of similar topics? 
+
+4. What are some inference we can make given information on topic or year?
+
+<!--chapter:end:index.Rmd-->
+
+
+# Data sources
+
+Placeholder
+
+
+
+<!--chapter:end:02-data.Rmd-->
+
+
+# Data transformation
+
+Placeholder
+
+
+
+<!--chapter:end:03-cleaning.Rmd-->
+
+
+# Missing values
+
+Placeholder
+
+
+
+<!--chapter:end:04-missing.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
 # Results
 
 ```{r, message=FALSE, include=FALSE}
@@ -314,3 +384,28 @@ df1_count %>%
 ```
 
 As shown in the histograms `Sum of Variables by Year` in section 1, tags in year 2021 has the least amount of usage in all of the total views, comments, answers, and accepted answers categories. However, if we take a closer look at the programming language tags as defined in the previous section, we will notice from the above density plots that around 6750 total answers there exists a local maximum for year 2021, which means year 2021 actually receives a decent amount of total answers for number of answers around 6000, despite it being the year with the least user interactions so far. So those 9 programming language tags have comparatively similar total answers in year 2021 as the previous years for high amount of total answers, or even to a greater extent if scaled proportional to the duration of the posts.
+
+<!--chapter:end:05-results.Rmd-->
+
+
+# Interactive component
+
+Placeholder
+
+
+## Parallel Coordinates Plot
+
+<!--chapter:end:06-interactive.Rmd-->
+
+```{r include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+# Conclusion
+
+
+<!--chapter:end:07-conclusion.Rmd-->
+
