@@ -8,7 +8,8 @@ relationship-between-views-and-answers
 usage-over-time
 porportion-of-usage
 rate-of-change-in-usage
-distribution-of-interaction-for-9-programming-languages-tags
+a-case-study-of-9-programming-language-tags
+distribution-of-interaction
 programming-languange-tags-by-year
 interactive-component
 parallel-coordinates-plot
