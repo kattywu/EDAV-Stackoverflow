@@ -1,9 +1,8 @@
 body {
     background-color: #ffffff;
-    font-family: Verdana, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
-    line-height: 28px;
+    line-height: normal;
     width:100%;
 }
 
@@ -15,7 +14,6 @@ text {
 
 #wrapper {
    position: relative;
-   float: left;
    top: 20px;
    padding: 10px;
 }
@@ -46,7 +44,7 @@ button:hover {
 
 
 /* data table */
-#grid { height: 198px; color:black; clear: both; position:relative; top: 60px; left: 15px }
+#grid { height: 198px; color:black; clear: both; position:relative; top: 60px; left: 175px }
 .row, .header { clear: left; font-size: 14px; line-height: 18px; height: 20px; margin: 5px; width:1520px }
 .row:hover {text-shadow: -1px 1px 8px #FEB40C, 1px -1px 8px #FFFFFF;}
 .row:nth-child(odd) { background: rgba(0,0,0,0.05); }
