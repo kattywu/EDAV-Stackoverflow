@@ -1,2 +1,14 @@
 # Conclusion
 
+## Findings
+
+The summary statistics `tag count`, `total comments`, `accepted answers`, and `total answers` are heavily correlated, meaning that the amount of total comments and answers a tag receives is in proportional to its frequency as tag counts accumulated over time. As we study the relationship between `total views` and `total answers` over the past 6 years, it appears that for tags with total answers in between 2,500 and 5,000 there is a positive trend, while relationships are less apparent for tags with total answers outside this range. Further examining individual tags, we found that they seem to increase or decrease slowly rather than jump rapidly in usage, and tags `python`, `Javascript`, and `java` remain stable in the top 5 most used tags. When focusing on programming language tags out of all 72 unique tags in our data, `python` has surpassed `Javascript` as the top rank in 2018 and remained the position to this date. Also, despite year 2021 having the least amount of data, total answers the programming language tags have received are comparatively similar to previous years for higher amount of total answers.
+
+
+## Limitations
+
+Since we selectively chose the top 50 tags from each year, tags with lower popularity are not included in our analysis. When analyzing the programming language tags, tags that are not in our data might potentially be a programming language tag and got neglected, so the ranking of tags shown in our plots may not be as accurate as if we included programming language tags with lower popularity.
+
+## Future Directions
+
+For future studies, we might consider incorporating the duration of each post in our analysis, and examine how the duration might impact a tag's usage, ranking in a specific year or across years, and relationships with similar tags. We would also want to consider grouping tags with similar topics together, for example `python` and `python-2.7` as one group, and repeat the same analysis we have done already but focusing on grouping effects in addition to on individual tags.
