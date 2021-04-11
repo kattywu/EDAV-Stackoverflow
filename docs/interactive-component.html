@@ -24,7 +24,7 @@
 <meta name="author" content="Emily Jennings-Dobbs and Yingyao Wu" />
 
 
-<meta name="date" content="2021-04-09" />
+<meta name="date" content="2021-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,6 @@
   
 <link rel="prev" href="results.html"/>
 <link rel="next" href="conclusion.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,20 +50,22 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +85,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,24 +138,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
 <li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
-<ul>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#correlation-between-variables"><i class="fa fa-check"></i><b>5.1</b> Correlation Between Variables</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#relationship-between-views-and-answers"><i class="fa fa-check"></i><b>5.2</b> Relationship between Views and Answers</a></li>
 <li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#usage-over-time"><i class="fa fa-check"></i><b>5.3</b> Usage over Time</a></li>
 <li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#porportion-of-usage"><i class="fa fa-check"></i><b>5.4</b> Porportion of Usage</a></li>
 <li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#rate-of-change-in-usage"><i class="fa fa-check"></i><b>5.5</b> Rate of Change in Usage</a></li>
-<li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#a-case-study-of-9-programming-language-tags"><i class="fa fa-check"></i><b>5.6</b> A Case Study of 9 Programming Language Tags</a>
-<ul>
+<li class="chapter" data-level="5.6" data-path="results.html"><a href="results.html#a-case-study-of-9-programming-language-tags"><i class="fa fa-check"></i><b>5.6</b> A Case Study of 9 Programming Language Tags</a><ul>
 <li class="chapter" data-level="5.6.1" data-path="results.html"><a href="results.html#distribution-of-interaction"><i class="fa fa-check"></i><b>5.6.1</b> Distribution of Interaction</a></li>
 <li class="chapter" data-level="5.6.2" data-path="results.html"><a href="results.html#programming-languange-tags-by-year"><i class="fa fa-check"></i><b>5.6.2</b> Programming Languange Tags by Year</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a>
-<ul>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a><ul>
 <li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#parallel-coordinates-plot"><i class="fa fa-check"></i><b>6.1</b> Parallel Coordinates Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
+<li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a><ul>
+<li class="chapter" data-level="7.1" data-path="conclusion.html"><a href="conclusion.html#findings"><i class="fa fa-check"></i><b>7.1</b> Findings</a></li>
+<li class="chapter" data-level="7.2" data-path="conclusion.html"><a href="conclusion.html#limitations"><i class="fa fa-check"></i><b>7.2</b> Limitations</a></li>
+<li class="chapter" data-level="7.3" data-path="conclusion.html"><a href="conclusion.html#future-directions"><i class="fa fa-check"></i><b>7.3</b> Future Directions</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -174,9 +176,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="interactive-component" class="section level1" number="6">
+<div id="interactive-component" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Interactive component</h1>
-<div id="parallel-coordinates-plot" class="section level2" number="6.1">
+<div id="parallel-coordinates-plot" class="section level2">
 <h2><span class="header-section-number">6.1</span> Parallel Coordinates Plot</h2>
 <div style="background: ghostwhite; 
             font-size:14px; 
@@ -260,7 +262,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://kattywu.github.io/EDAV-Stackoverflow/edit/main/06-interactive.Rmd",
+"link": "https://github.com/kattywu/EDAV-Stackoverflow/edit/main/06-interactive.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -268,7 +270,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://kattywu.github.io/EDAV-Stackoverflow/blob/main/06-interactive.Rmd",
+"link": "https://github.com/kattywu/EDAV-Stackoverflow/blob/main/06-interactive.Rmd",
 "text": null
 },
 "download": null,
