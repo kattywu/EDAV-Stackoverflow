@@ -217,7 +217,7 @@ While the number of total frequency of tags per year is quite stable causing the
 ```
  
  
-```{r,fig.height=6, fig.width=5}
+```{r,fig.height=6, fig.width=8}
  # titles for each plot
  titles = c('Tag Counts in 2015 vs 2016', 'Tag Counts in 2016 vs 2017', 'Tag Counts in 2017 vs 2018',
             'Tag Counts in 2018 vs 2019', 'Tag Counts in 2019 vs 2020', 'Tag Counts in 2020 vs 2021')
